@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports) {
 
 /*
@@ -146,7 +147,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -212,7 +213,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(2);
+var	fixUrls = __webpack_require__(3);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -528,7 +529,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 
@@ -623,21 +624,28 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(7);
+__webpack_require__(11);
 
 (function () {
   'use strict';
 
-  console.log('admin.js');
+  console.log('引入 admin.js 成功！');
+
+  var appId = '3lYwUmOrkdkkv4zmxHzDbp3w-gzGzoHsz';
+  var appKey = '5KWyRdYSGUIjOYDMirAnfDJ4';
+  AV.init({ appId: appId, appKey: appKey });
 })(); /*
        * admin.js
        * Copyright (C) 2018 daijt <daijt@david.local>
@@ -646,11 +654,11 @@ __webpack_require__(7);
        */
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(8);
+var content = __webpack_require__(12);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -664,7 +672,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(1)(content, options);
+var update = __webpack_require__(2)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -696,15 +704,15 @@ if(false) {
 }
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/*\n * main.css\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\n/* global variable */\n/* global style */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: content-box; }\n\na {\n  color: inherit;\n  text-decoration: none; }\n\nli {\n  list-style: none; }\n\ninput:focus {\n  outline: none; }\n\nbody {\n  height: 100vh;\n  display: flex;\n  font-family: \"Tahoma\", sans-serif;\n  box-sizing: border-box; }\n\n@keyframes fadein {\n  from {\n    opacity: 1;\n    transform: scale(0); }\n  to {\n    opacity: 0;\n    transform: scale(1); } }\n\n/* 滚动条 */\n::-webkit-scrollbar {\n  width: 5px; }\n\n/* 滚动条滑块 */\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 0, 0, 0.1); }\n\n/* 仿网易云音乐 Mac 客户端 */\n.neteasemusic {\n  margin: auto;\n  width: 1000px;\n  height: 670px;\n  border-radius: 5px;\n  box-shadow: 0 0 15px #404040;\n  transition: all ease .3s;\n  overflow: hidden; }\n  .neteasemusic:hover {\n    box-shadow: 0 0 25px #404040; }\n\n/* 顶部导航及用户登录区 */\n.top-bar {\n  position: relative;\n  height: 60px;\n  background: #ba2502; }\n\n/* 用户交互区 */\n.interaction {\n  display: flex;\n  /* 侧边栏 */\n  /* 右侧面板 */ }\n  .interaction .aside-bar {\n    position: relative;\n    width: 200px;\n    height: 610px;\n    background: #f6f6f6;\n    overflow: hidden;\n    /* 音乐列表 */\n    /* 添加歌曲 */ }\n    .interaction .aside-bar .song-list {\n      height: 549px;\n      font-size: 12px;\n      overflow: auto;\n      /* 歌曲选中样式 */ }\n      .interaction .aside-bar .song-list li {\n        position: relative;\n        padding: 5px 5px 5px 43px;\n        line-height: 20px;\n        cursor: pointer;\n        /* 歌曲信息 */\n        /* 歌名 */\n        /* 歌手 */ }\n        .interaction .aside-bar .song-list li:nth-child(odd) {\n          background: #efefef; }\n        .interaction .aside-bar .song-list li:hover {\n          color: #ba2502; }\n        .interaction .aside-bar .song-list li p {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis; }\n        .interaction .aside-bar .song-list li p.song-name {\n          font-size: 13px; }\n        .interaction .aside-bar .song-list li p.singer {\n          color: #494949; }\n          .interaction .aside-bar .song-list li p.singer .iconfont {\n            padding-right: 3px;\n            font-weight: bolder;\n            font-size: 12px; }\n      .interaction .aside-bar .song-list #active {\n        background: #c8c8c8; }\n      .interaction .aside-bar .song-list #active::before {\n        position: absolute;\n        top: calc(50% - 20px);\n        left: 0;\n        content: '';\n        display: block;\n        width: 5px;\n        height: 40px;\n        background: #ba2502; }\n    .interaction .aside-bar #add-song {\n      position: fixed;\n      padding: 19px 0;\n      width: 200px;\n      color: #333333;\n      text-align: center;\n      border-top: 1px solid #ddd;\n      cursor: pointer;\n      background: #ece9e6;\n      background: linear-gradient(to top, #e6e6e6, #ffffff);\n      transition: all ease .1s; }\n      .interaction .aside-bar #add-song:hover {\n        color: #ba2502; }\n      .interaction .aside-bar #add-song .iconfont {\n        padding-right: 5px; }\n  .interaction .dashboard {\n    width: 800px;\n    background: #fafafa;\n    /* 编辑歌曲页面 */\n    /* 新增歌曲页面 */ }\n    .interaction .dashboard .hide {\n      display: none; }\n    .interaction .dashboard .edit-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .edit-page .tip {\n        padding-left: 30px;\n        line-height: 50px;\n        font-size: 18px;\n        text-align: center;\n        color: #333333; }\n      .interaction .dashboard .edit-page .edit-area {\n        margin: 30px auto;\n        padding: 30px 0 40px;\n        display: flex;\n        flex-direction: column;\n        width: 400px;\n        border: 3px dashed #ddd;\n        border-radius: 10px; }\n        .interaction .dashboard .edit-page .edit-area label {\n          padding-right: 70px;\n          text-align: right;\n          line-height: 70px; }\n          .interaction .dashboard .edit-page .edit-area label input {\n            float: right;\n            margin: 15px auto;\n            padding: 0 10px;\n            width: 200px;\n            height: 40px;\n            font-size: 16px;\n            color: #333333;\n            border: 1px solid #bbb;\n            box-sizing: border-box;\n            border-radius: 5px; }\n        .interaction .dashboard .edit-page .edit-area .confirm {\n          padding: 10px 0;\n          margin-top: 15px;\n          margin-left: 130px;\n          width: 200px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border: 1px solid #ba2502;\n          border-radius: 5px;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .edit-page .edit-area .confirm:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n    .interaction .dashboard .upload-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .upload-page #upload-area {\n        position: relative;\n        height: 400px;\n        border: 3px dashed #e3e3e3;\n        border-radius: 15px;\n        /* 文件上传动画 */\n        /* 上传文件按钮 */ }\n        .interaction .dashboard .upload-page #upload-area::before {\n          content: '\\8BF7\\9009\\62E9\\6587\\4EF6\\6216\\5C06\\6587\\4EF6\\62D6\\62FD\\81F3\\6B64\\8FDB\\884C\\4E0A\\4F20';\n          display: block;\n          position: absolute;\n          top: calc(50% - 10px);\n          left: calc(50% - 153px);\n          line-height: 20px;\n          font-size: 18px;\n          color: #d7d7d7; }\n        .interaction .dashboard .upload-page #upload-area.uploading::before {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite .8s; }\n        .interaction .dashboard .upload-page #upload-area.uploading::after {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite; }\n        .interaction .dashboard .upload-page #upload-area .upload-button {\n          position: absolute;\n          top: calc(100% + 20px);\n          padding: 10px;\n          width: 150px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border-radius: 10px;\n          border: 1px solid #ba2502;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .upload-page #upload-area .upload-button:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\n * admin.css\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\n/* global variable */\n/* global style */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: content-box; }\n\na {\n  color: inherit;\n  text-decoration: none; }\n\nli {\n  list-style: none; }\n\ninput:focus {\n  outline: none; }\n\nbody {\n  height: 100vh;\n  display: flex;\n  font-family: \"Tahoma\", sans-serif;\n  box-sizing: border-box; }\n\n@keyframes fadein {\n  from {\n    opacity: 1;\n    transform: scale(0); }\n  to {\n    opacity: 0;\n    transform: scale(1); } }\n\n/* 滚动条 */\n::-webkit-scrollbar {\n  width: 5px; }\n\n/* 滚动条滑块 */\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 0, 0, 0.1); }\n\n/* 仿网易云音乐 Mac 客户端 */\n.neteasemusic {\n  margin: auto;\n  width: 1000px;\n  height: 670px;\n  border-radius: 5px;\n  box-shadow: 0 0 15px #404040;\n  transition: all ease .3s;\n  overflow: hidden; }\n  .neteasemusic:hover {\n    box-shadow: 0 0 25px #404040; }\n\n/* 顶部导航及用户登录区 */\n.top-bar {\n  position: relative;\n  height: 60px;\n  background: #ba2502; }\n  .top-bar .logo {\n    position: absolute;\n    bottom: 0;\n    left: 10px;\n    width: 160px;\n    height: 40px;\n    background-size: contain; }\n\n/* 用户交互区 */\n.interaction {\n  display: flex;\n  /* 侧边栏 */\n  /* 右侧面板 */ }\n  .interaction .aside-bar {\n    position: relative;\n    width: 200px;\n    height: 610px;\n    background: #f6f6f6;\n    overflow: hidden;\n    /* 音乐列表 */\n    /* 添加歌曲 */ }\n    .interaction .aside-bar .song-list {\n      height: 549px;\n      font-size: 12px;\n      overflow: auto;\n      /* 歌曲选中样式 */ }\n      .interaction .aside-bar .song-list li {\n        position: relative;\n        padding: 5px 5px 5px 43px;\n        line-height: 20px;\n        cursor: pointer;\n        /* 歌曲信息 */\n        /* 歌名 */\n        /* 歌手 */ }\n        .interaction .aside-bar .song-list li:nth-child(odd) {\n          background: #efefef; }\n        .interaction .aside-bar .song-list li:hover {\n          color: #ba2502; }\n        .interaction .aside-bar .song-list li::after {\n          position: absolute;\n          content: '';\n          top: calc(50% - 10px);\n          left: 10px;\n          width: 26px;\n          height: 26px;\n          display: block;\n          background-size: contain; }\n        .interaction .aside-bar .song-list li p {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis; }\n        .interaction .aside-bar .song-list li p.song-name {\n          font-size: 13px; }\n        .interaction .aside-bar .song-list li p.singer {\n          color: #494949; }\n          .interaction .aside-bar .song-list li p.singer .iconfont {\n            padding-right: 3px;\n            font-weight: bolder;\n            font-size: 12px; }\n      .interaction .aside-bar .song-list #active {\n        background: #c8c8c8; }\n      .interaction .aside-bar .song-list #active::before {\n        position: absolute;\n        top: calc(50% - 20px);\n        left: 0;\n        content: '';\n        display: block;\n        width: 5px;\n        height: 40px;\n        background: #ba2502; }\n    .interaction .aside-bar #add-song {\n      position: fixed;\n      padding: 19px 0;\n      width: 200px;\n      color: #333333;\n      text-align: center;\n      border-top: 1px solid #ddd;\n      cursor: pointer;\n      background: #ece9e6;\n      background: linear-gradient(to top, #e6e6e6, #ffffff);\n      transition: all ease .1s; }\n      .interaction .aside-bar #add-song:hover {\n        color: #ba2502; }\n      .interaction .aside-bar #add-song .iconfont {\n        padding-right: 5px; }\n  .interaction .dashboard {\n    width: 800px;\n    background: #fafafa;\n    /* 编辑歌曲页面 */\n    /* 新增歌曲页面 */ }\n    .interaction .dashboard .hide {\n      display: none; }\n    .interaction .dashboard .edit-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .edit-page .tip {\n        padding-left: 30px;\n        line-height: 50px;\n        font-size: 18px;\n        text-align: center;\n        color: #333333; }\n      .interaction .dashboard .edit-page .edit-area {\n        margin: 30px auto;\n        padding: 30px 0 40px;\n        display: flex;\n        flex-direction: column;\n        width: 400px;\n        border: 3px dashed #ddd;\n        border-radius: 10px; }\n        .interaction .dashboard .edit-page .edit-area label {\n          padding-right: 70px;\n          text-align: right;\n          line-height: 70px; }\n          .interaction .dashboard .edit-page .edit-area label input {\n            float: right;\n            margin: 15px auto;\n            padding: 0 10px;\n            width: 200px;\n            height: 40px;\n            font-size: 16px;\n            color: #333333;\n            border: 1px solid #bbb;\n            box-sizing: border-box;\n            border-radius: 5px; }\n            .interaction .dashboard .edit-page .edit-area label input[name=\"url\"] {\n              cursor: text; }\n        .interaction .dashboard .edit-page .edit-area .confirm {\n          padding: 10px 0;\n          margin-top: 15px;\n          margin-left: 130px;\n          width: 200px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border: 1px solid #ba2502;\n          border-radius: 5px;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .edit-page .edit-area .confirm:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n    .interaction .dashboard .upload-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .upload-page #upload-area {\n        position: relative;\n        height: 400px;\n        border: 3px dashed #e3e3e3;\n        border-radius: 15px;\n        /* 文件上传动画 */\n        /* 上传文件按钮 */ }\n        .interaction .dashboard .upload-page #upload-area::before {\n          content: '\\8BF7\\9009\\62E9\\6587\\4EF6\\6216\\5C06\\6587\\4EF6\\62D6\\62FD\\81F3\\6B64\\8FDB\\884C\\4E0A\\4F20';\n          display: block;\n          position: absolute;\n          top: calc(50% - 10px);\n          left: calc(50% - 153px);\n          line-height: 20px;\n          font-size: 18px;\n          color: #d7d7d7; }\n        .interaction .dashboard .upload-page #upload-area.uploading::before {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite .8s; }\n        .interaction .dashboard .upload-page #upload-area.uploading::after {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite; }\n        .interaction .dashboard .upload-page #upload-area #upload-button {\n          position: absolute;\n          top: calc(100% + 20px);\n          padding: 10px;\n          width: 150px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border-radius: 5px;\n          border: 1px solid #ba2502;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .upload-page #upload-area #upload-button:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n", ""]);
 
 // exports
 

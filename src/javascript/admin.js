@@ -7,8 +7,13 @@
 
 import '../style/admin.scss';
 
-(function(){
-  'use strict';
-  console.log('admin.js');
+(function () {
+    'use strict';
+
+    console.log('引入 admin.js 成功！');
+
+    const appId = '3lYwUmOrkdkkv4zmxHzDbp3w-gzGzoHsz';
+    const appKey = '5KWyRdYSGUIjOYDMirAnfDJ4';
+    AV.init({ appId, appKey });
 
 })();

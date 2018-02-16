@@ -1,12 +1,12 @@
 /*
- * main.css
+ * admin.css
  * Copyright (C) 2018 daijt
  *
  * Distributed under terms of the MIT license.
  */
 
 /* global variable */
-$globalThemeColor: rgb(186,37,2);
+$globalThemeColor: rgb(186, 37, 2);
 $globalBgColor: rgb(250, 250, 250);
 $asideBgColor: rgb(246, 246, 246);
 $asideSelectedColor: rgb(200, 200, 200);
@@ -80,6 +80,14 @@ body {
   position: relative;
   height: 60px;
   background: $globalThemeColor;
+  .logo {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 160px;
+    height: 40px;
+    background-size: contain;
+  }
 }
 
 /* 用户交互区 */
@@ -109,6 +117,16 @@ body {
         }
         &:hover {
           color: $globalThemeColor;
+        }
+        &::after {
+          position: absolute;
+          content: '';
+          top: calc(50% - 10px);
+          left: 10px;
+          width: 26px;
+          height: 26px;
+          display: block;
+          background-size: contain;
         }
 
         /* 歌曲信息 */
@@ -212,6 +230,9 @@ body {
             border: 1px solid #bbb;
             box-sizing: border-box;
             border-radius: 5px;
+            &[name="url"] {
+              cursor: text;
+            }
           }
         }
         .confirm {
@@ -283,7 +304,7 @@ body {
         }
 
         /* 上传文件按钮 */
-        .upload-button {
+        #upload-button {
           position: absolute;
           top: calc(100% + 20px);
           padding: 10px;
@@ -292,7 +313,7 @@ body {
           font-size: 18px;
           text-align: center;
           color: $globalThemeColor;
-          border-radius: 10px;
+          border-radius: 5px;
           border: 1px solid $globalThemeColor;
           cursor: pointer;
           transition: all ease .3s;

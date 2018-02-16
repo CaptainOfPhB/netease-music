@@ -9,26 +9,8 @@
     <link rel="stylesheet" href="//at.alicdn.com/t/font_460116_de9d2mqvw6sqncdi.css">
     <title>网易云音乐</title>
     <style>
-        .top-bar .logo{
-            position: absolute;
-            bottom: 0;
-            left: 10px;
-            width: 160px;
-            height: 40px;
-            background: url("../image/logo.png") no-repeat;
-            background-size: contain;
-        }
-        li::after {
-            position: absolute;
-            content: '';
-            top: calc(50% - 10px);
-            left: 10px;
-            width: 26px;
-            height: 26px;
-            display: block;
-            background: url("../image/music.png") no-repeat;
-            background-size: contain;
-        }
+        .logo{background: url("../image/logo.png") no-repeat;}
+        li::after {background: url("../image/music.png") no-repeat;}
     </style>
 </head>
     
@@ -43,131 +25,38 @@
                 <div class="song-list">
                     <ul>
                         <li id="active">
-                            <p class="song-name" title="{{name}}">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                        <li>
-                            <p class="song-name">我是不是你最疼爱的人我是不是你最疼爱的人我是不是你最疼爱的人</p>
+                            <p class="song-name" title="{{name}}">我是不是你最疼爱的人</p>
                             <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
                         </li>
                     </ul>
                 </div>
-                <div id="add-song"><i class="iconfont icon-0801zengjia"></i>新增歌曲</div>
             </aside>
             <main class="dashboard">
                 
                 <div class="edit-page hide">
                     <p class="tip">上传成功！请编辑歌曲信息！</p>
                     <div class="edit-area">
-                        <label>音乐标题：<input type="text" name="name" value=""></label>
-                        <label>歌手：<input type="text" name="name" value=""></label>
-                        <label>歌曲外链：<input type="text" name="name" value="hhasdfasdfasdfasdfasdfadfasdfasdf7a98d7f8a7s9dfh" disabled="disabled"></label>
+                        <label>音乐标题：<input type="text" name="song" value=""></label>
+                        <label>歌手：<input type="text" name="singer" value=""></label>
+                        <label>歌曲外链：<input type="text" name="url" value="hhasdfasdfasdfasdfasdfadfasdfasdf7a98d7f8a7s9dfh" disabled="disabled"></label>
                         <div class="confirm">确&nbsp;&nbsp;定</div>
                     </div>
                 </div>
 
                 
-                <div class="upload-page">
+                <div class="upload-page hide">
                     <div id="upload-area">
-                        <div class="upload-button">选择文件</div>
+                        <div id="upload-button">选择文件</div>
                     </div>
                 </div>
+
             </main>
+
         </section>
     </section>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.6.0/av-min.js"></script>
 
-<script type="text/javascript" src="../js/admin.js?855317377f72a1490c76"></script></body>
+<script type="text/javascript" src="../js/moxie.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/plupload.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/qiniu.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/eventsHub.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/admin.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songEdit.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songUpload.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songNew.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songList.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songShow.js?52ea3ee202772a7590ce"></script></body>
 
 </html>

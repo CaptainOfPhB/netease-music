@@ -1,6 +1,6 @@
 /*
  * song-new.js
- * Copyright (C) 2018 daijt <daijt@david.local>
+ * Copyright (C) 2018 daijt
  *
  * Distributed under terms of the MIT license.
  */
@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    console.log('引入 song-new.js 成功！');
+    // console.log('引入 song-new.js 成功！');
 
     let view = {
         el: $('.aside-bar'),
@@ -28,10 +28,9 @@
         },
         bindEvents() {
             view.el.find('#add-song').on('click', () => {
-                EventsHub.publish('new', '用户需要新建歌曲！')
+                EventsHub.publish('new', '用户需要新增歌曲！');
             })
         }
-
     };
 
     controller.init();

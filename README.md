@@ -2,7 +2,7 @@
 
 ### Preview
 
-- [后台管理页面](http://captaininphw.xyz/NeteaseMusic/)
+- [后台管理页面](http://captaininphw.xyz/NeteaseMusic/dist/html/admin.html)
 
 ### Version 1.0
 

@@ -56,13 +56,14 @@
                 let song = AV.Object.createWithoutData('SongList', model.data.id);
                 song.destroy().then(
                     () => {
-                        // console.log('删除成功');
+                        return true;
                     },
                     (error) => {
                         console.log(error);
                     }
                 );
             }
+            return false;
         },
         fetchModifiedData(view) {
             return {
@@ -112,9 +113,10 @@
         },
         deleteSong() {
             view.el.on('click', '.delete', () => {
-                model.deleteData(view.confirm());
-                view.hide();
-                EventsHub.publish('delete', '用户歌曲已删除！');
+                if (model.deleteData(view.confirm())) {
+                    view.hide();
+                    EventsHub.publish('delete', '用户歌曲已删除！');
+                }
             })
         },
         modifySong() {

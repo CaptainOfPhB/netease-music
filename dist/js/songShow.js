@@ -131,11 +131,12 @@
             if (confirm) {
                 var song = AV.Object.createWithoutData('SongList', model.data.id);
                 song.destroy().then(function () {
-                    // console.log('删除成功');
+                    return true;
                 }, function (error) {
                     console.log(error);
                 });
             }
+            return false;
         },
         fetchModifiedData: function fetchModifiedData(view) {
             return {
@@ -185,9 +186,10 @@
         },
         deleteSong: function deleteSong() {
             view.el.on('click', '.delete', function () {
-                model.deleteData(view.confirm());
-                view.hide();
-                EventsHub.publish('delete', '用户歌曲已删除！');
+                if (model.deleteData(view.confirm())) {
+                    view.hide();
+                    EventsHub.publish('delete', '用户歌曲已删除！');
+                }
             });
         },
         modifySong: function modifySong() {

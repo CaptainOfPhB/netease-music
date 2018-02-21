@@ -6,57 +6,96 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../image/favicon.ico" type="image/ico">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_460116_de9d2mqvw6sqncdi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_460116_z7pwgfm7he86ko6r.css">
     <title>网易云音乐</title>
     <style>
-        .logo{background: url("../image/logo.png") no-repeat;}
-        li::after {background: url("../image/music.png") no-repeat;}
+        .logo {
+            background: url("../image/logo.png") no-repeat;
+        }
+
+        .swiper-slide:nth-child(1) {
+            background: url("../image/1.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(2) {
+            background: url("../image/2.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(3) {
+            background: url("../image/3.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(4) {
+            background: url("../image/4.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(5) {
+            background: url("../image/5.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(6) {
+            background: url("../image/6.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(7) {
+            background: url("../image/7.jpg") no-repeat;
+        }
+
+        .swiper-slide:nth-child(8) {
+            background: url("../image/8.jpg") no-repeat;
+        }
+
+        li::after {
+            background: url("../image/music.png") no-repeat;
+        }
     </style>
 </head>
-    
+
 <body>
+
+
+
+
+
+<section class="neteasemusic">
+
     
-    <section class="neteasemusic">
-        <header class="top-bar">
-            <div class="logo"></div>
-        </header>
-        <section class="interaction">
-            <aside class="aside-bar">
-                <div class="song-list">
-                    <ul>
-                        <li id="active">
-                            <p class="song-name" title="{{name}}">我是不是你最疼爱的人</p>
-                            <p class="singer"><i class="iconfont icon-geshou"></i>李代沫</p>
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-            <main class="dashboard">
-                
-                <div class="edit-page hide">
-                    <p class="tip">上传成功！请编辑歌曲信息！</p>
-                    <div class="edit-area">
-                        <label>音乐标题：<input type="text" name="song" value=""></label>
-                        <label>歌手：<input type="text" name="singer" value=""></label>
-                        <label>歌曲外链：<input type="text" name="url" value="hhasdfasdfasdfasdfasdfadfasdfasdf7a98d7f8a7s9dfh" disabled="disabled"></label>
-                        <div class="confirm">确&nbsp;&nbsp;定</div>
-                    </div>
-                </div>
 
-                
-                <div class="upload-page hide">
-                    <div id="upload-area">
-                        <div id="upload-button">选择文件</div>
-                    </div>
-                </div>
+    <header class="top-bar"></header>
 
-            </main>
+    
 
-        </section>
+    <section class="interaction">
+        
+        <aside class="aside-bar">
+            <div class="song-list">
+                <ul></ul>
+            </div>
+        </aside>
+        
+        <main class="dashboard">
+            
+            <div class="welcome-page"></div>
+            
+            <div class="info-page hide"></div>
+            
+            <div class="edit-page hide"></div>
+            
+            <div class="upload-page hide"></div>
+        </main>
     </section>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.6.0/av-min.js"></script>
 
-<script type="text/javascript" src="../js/moxie.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/plupload.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/qiniu.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/eventsHub.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/admin.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songEdit.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songUpload.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songNew.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songList.js?52ea3ee202772a7590ce"></script><script type="text/javascript" src="../js/songShow.js?52ea3ee202772a7590ce"></script></body>
+</section>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/js/swiper.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.6.0/av-min.js"></script>
+
+<script type="text/javascript" src="../js/moxie.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/plupload.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/qiniu.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/eventsHub.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/welcome.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/admin.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/profile.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/songShow.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/songList.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/songEdit.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/songUpload.js?a953794594a74865260d"></script><script type="text/javascript" src="../js/songNew.js?a953794594a74865260d"></script></body>
 
 </html>

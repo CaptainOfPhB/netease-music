@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    console.log('引入 events-hub.js 成功！');
+    // console.log('引入 events-hub.js 成功！');
 
     window.EventsHub = {
         events: {},

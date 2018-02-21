@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 17:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80,25 +80,45 @@
 (function () {
     'use strict';
 
-    console.log('引入 song-upload.js 成功！');
+    // console.log('引入 song-upload.js 成功！');
 
     var view = {
         el: $('.upload-page'),
-        render: function render() {}
+        render: function render(data) {
+            this.el.append(data);
+        },
+        uploading: function uploading() {
+            this.el.find('#upload-area').addClass('uploading');
+            this.el.find('#upload-button').addClass('hide');
+        },
+        uploaded: function uploaded() {
+            this.el.find('#upload-area').removeClass('uploading');
+            this.el.find('#upload-button').removeClass('hide');
+        }
     };
 
     var model = {
-        // data: ,
-        // template: ``
+        data: {},
+        template: ' \n            <div id="upload-area">\n                <div id="upload-button">\u9009\u62E9\u6587\u4EF6</div>\n            </div> \n        ',
+        refreshData: function refreshData(up, info) {
+            var _JSON$parse = JSON.parse(info.response),
+                key = _JSON$parse.key;
+
+            this.data = {
+                song: key,
+                singer: '',
+                url: up.getOption('domain') + '/' + key
+            };
+        }
     };
 
     var controller = {
         init: function init() {
+            view.render(model.template);
             this.initQiniu();
             this.bindEvents();
         },
         initQiniu: function initQiniu() {
-            var uploadArea = view.el.find('#upload-area');
             var uploader = Qiniu.uploader({
                 runtimes: 'html5',
                 browse_button: 'upload-button',
@@ -111,21 +131,15 @@
                 chunk_size: '4MB',
                 auto_start: true,
                 init: {
-                    'UploadProgress': function UploadProgress() {
-                        uploadArea.addClass('uploading');
+                    UploadProgress: function UploadProgress() {
+                        view.uploading();
                     },
-                    'FileUploaded': function FileUploaded(up, file, info) {
-                        uploadArea.removeClass('uploading');
-
-                        var _JSON$parse = JSON.parse(info.response),
-                            key = _JSON$parse.key;
-
-                        var data = {
-                            song: key,
-                            singer: '',
-                            url: up.getOption('domain') + '/' + key
-                        };
-                        EventsHub.publish('uploaded', data);
+                    FileUploaded: function FileUploaded(up, file, info) {
+                        model.refreshData(up, info);
+                    },
+                    UploadComplete: function UploadComplete() {
+                        view.uploaded();
+                        EventsHub.publish('uploaded', model.data);
                     }
                 }
             });
@@ -133,6 +147,13 @@
         bindEvents: function bindEvents() {
             EventsHub.subscribe('new', function () {
                 view.el.removeClass('hide');
+                EventsHub.publish('uploading', '用户需要上传歌曲，侧边栏歌曲激活状态请取消！');
+            });
+            EventsHub.subscribe('editing', function () {
+                view.el.addClass('hide');
+            });
+            EventsHub.subscribe('modify', function () {
+                view.el.addClass('hide');
             });
         }
     };

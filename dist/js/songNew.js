@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 15:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73,7 +73,7 @@
 
 /*
  * song-new.js
- * Copyright (C) 2018 daijt <daijt@david.local>
+ * Copyright (C) 2018 daijt
  *
  * Distributed under terms of the MIT license.
  */
@@ -81,7 +81,7 @@
 (function () {
     'use strict';
 
-    console.log('引入 song-new.js 成功！');
+    // console.log('引入 song-new.js 成功！');
 
     var view = {
         el: $('.aside-bar'),
@@ -101,7 +101,7 @@
         },
         bindEvents: function bindEvents() {
             view.el.find('#add-song').on('click', function () {
-                EventsHub.publish('new', '用户需要新建歌曲！');
+                EventsHub.publish('new', '用户需要新增歌曲！');
             });
         }
     };

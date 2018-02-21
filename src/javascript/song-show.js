@@ -56,14 +56,16 @@
                 let song = AV.Object.createWithoutData('SongList', model.data.id);
                 song.destroy().then(
                     () => {
-                        return true;
+                        // console.log('删除成功！')
                     },
                     (error) => {
                         console.log(error);
                     }
                 );
+                return true;
+            } else {
+                return false;
             }
-            return false;
         },
         fetchModifiedData(view) {
             return {

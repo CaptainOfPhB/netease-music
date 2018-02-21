@@ -7,27 +7,47 @@
 (function () {
     'use strict';
 
-    console.log('引入 song-upload.js 成功！');
+    // console.log('引入 song-upload.js 成功！');
 
     let view = {
         el: $('.upload-page'),
-        render() {
-
+        render(data) {
+            this.el.append(data);
+        },
+        uploading() {
+            this.el.find('#upload-area').addClass('uploading');
+            this.el.find('#upload-button').addClass('hide');
+        },
+        uploaded() {
+            this.el.find('#upload-area').removeClass('uploading');
+            this.el.find('#upload-button').removeClass('hide');
         }
     };
 
     let model = {
-        // data: ,
-        // template: ``
+        data: {},
+        template: ` 
+            <div id="upload-area">
+                <div id="upload-button">选择文件</div>
+            </div> 
+        `,
+        refreshData(up, info) {
+            let {key} = JSON.parse(info.response);
+            this.data = {
+                song: key,
+                singer: '',
+                url: up.getOption('domain') + '/' + key
+            };
+        }
     };
 
     let controller = {
         init() {
+            view.render(model.template);
             this.initQiniu();
             this.bindEvents();
         },
         initQiniu() {
-            let uploadArea = view.el.find('#upload-area');
             let uploader = Qiniu.uploader({
                 runtimes: 'html5',
                 browse_button: 'upload-button',
@@ -40,18 +60,15 @@
                 chunk_size: '4MB',
                 auto_start: true,
                 init: {
-                    'UploadProgress': function() {
-                        uploadArea.addClass('uploading');
+                    UploadProgress() {
+                        view.uploading();
                     },
-                    'FileUploaded': function(up, file, info) {
-                        uploadArea.removeClass('uploading');
-                        let {key} = JSON.parse(info.response);
-                        let data = {
-                            song: key,
-                            singer: '',
-                            url: up.getOption('domain') + '/' + key
-                        };
-                        EventsHub.publish('uploaded', data);
+                    FileUploaded(up, file, info) {
+                        model.refreshData(up, info);
+                    },
+                    UploadComplete() {
+                        view.uploaded();
+                        EventsHub.publish('uploaded', model.data);
                     }
                 }
             });
@@ -59,7 +76,14 @@
         bindEvents() {
             EventsHub.subscribe('new', () => {
                 view.el.removeClass('hide');
-            })
+                EventsHub.publish('uploading', '用户需要上传歌曲，侧边栏歌曲激活状态请取消！')
+            });
+            EventsHub.subscribe('editing', () => {
+                view.el.addClass('hide');
+            });
+            EventsHub.subscribe('modify', () => {
+                view.el.addClass('hide');
+            });
         }
     };
 

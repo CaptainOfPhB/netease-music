@@ -131,12 +131,14 @@
             if (confirm) {
                 var song = AV.Object.createWithoutData('SongList', model.data.id);
                 song.destroy().then(function () {
-                    return true;
+                    // console.log('删除成功！')
                 }, function (error) {
                     console.log(error);
                 });
+                return true;
+            } else {
+                return false;
             }
-            return false;
         },
         fetchModifiedData: function fetchModifiedData(view) {
             return {

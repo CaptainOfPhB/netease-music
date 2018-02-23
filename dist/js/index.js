@@ -60,12 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
+/* 0 */
 /***/ (function(module, exports) {
 
 /*
@@ -147,7 +146,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -213,7 +212,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(3);
+var	fixUrls = __webpack_require__(2);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -529,7 +528,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 
@@ -624,34 +623,37 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 3 */,
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(8);
+__webpack_require__(20);
 
+__webpack_require__(5);
+
+/*
+ * index.js
+ * Copyright (C) 2018 daijt
+ *
+ * Distributed under terms of the MIT license.
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  console.log('index.js');
-})(); /*
-       * index.js
-       * Copyright (C) 2018 daijt <daijt@david.local>
-       *
-       * Distributed under terms of the MIT license.
-       */
+    // 设置 REM
+
+    $('head').prepend('\n        <style>\n            html {\n                font-size: ' + window.innerWidth / 20 + 'px;\n            }\n        </style>\n    ');
+})();
 
 /***/ }),
-/* 8 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(9);
+var content = __webpack_require__(6);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -665,7 +667,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -697,15 +699,92 @@ if(false) {
 }
 
 /***/ }),
-/* 9 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(0)(false);
 // imports
 
 
 // module
-exports.push([module.i, "/*\n * index.css\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\nbody {\n  background: white;\n  color: black; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\n * index.scss\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\n/* global variable */\n/* px2rem */\n/* global style */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: content-box; }\n\na {\n  color: inherit;\n  text-decoration: none; }\n\nli {\n  list-style: none; }\n\ninput:focus {\n  outline: none; }\n\nbody {\n  display: flex;\n  color: #333;\n  font-size: 16px;\n  font-family: \"Tahoma\", sans-serif;\n  box-sizing: border-box;\n  background: #FCFCFD; }\n\n/* 仿网易云音乐 Mac 客户端 */\n.netease-music {\n  position: relative;\n  width: 100%;\n  /* 顶部 logo 区域以及 tab 导航 */\n  /* 页面主体部分 */ }\n  .netease-music header {\n    position: fixed;\n    width: 100%;\n    z-index: 1;\n    /* logo 展示区 */\n    /* tab 导航 */ }\n    .netease-music header .logo {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      padding: 18px 10px;\n      background: #d43c33; }\n      .netease-music header .logo svg {\n        height: 25px; }\n      .netease-music header .logo .contact-me {\n        padding: 5px 10px;\n        color: #FFFFFF;\n        font-size: 15px;\n        border: 1px solid #FFFFFF;\n        border-radius: 15px; }\n        .netease-music header .logo .contact-me .iconfont {\n          font-size: 15px;\n          padding-right: 3px; }\n    .netease-music header .nav-tab {\n      display: flex;\n      justify-content: space-around;\n      background: #FCFCFD;\n      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n      .netease-music header .nav-tab .item {\n        padding: 12px 0;\n        width: 6.66667rem;\n        line-height: 15px;\n        font-size: 15px;\n        text-align: center; }\n        .netease-music header .nav-tab .item span {\n          position: relative;\n          padding: 0 5px; }\n          .netease-music header .nav-tab .item span.active {\n            color: #d43c33; }\n          .netease-music header .nav-tab .item span.active::after {\n            content: '';\n            display: block;\n            position: absolute;\n            bottom: -11px;\n            left: calc(50% - 50%);\n            width: 100%;\n            height: 2px;\n            background: #d43c33; }\n  .netease-music main {\n    margin-top: 103px;\n    /* 推荐音乐页面 */ }\n    .netease-music main .page-remd {\n      padding-top: 20px; }\n      .netease-music main .page-remd .subpage-remd .title-remd,\n      .netease-music main .page-remd .subpage-remd .title-latest,\n      .netease-music main .page-remd .subpage-latest .title-remd,\n      .netease-music main .page-remd .subpage-latest .title-latest {\n        position: relative;\n        padding-left: 8px;\n        font-size: 17px; }\n        .netease-music main .page-remd .subpage-remd .title-remd::after,\n        .netease-music main .page-remd .subpage-remd .title-latest::after,\n        .netease-music main .page-remd .subpage-latest .title-remd::after,\n        .netease-music main .page-remd .subpage-latest .title-latest::after {\n          content: '';\n          display: block;\n          position: absolute;\n          top: calc(50% - 8px);\n          left: 0;\n          width: 2px;\n          height: 16px;\n          font-size: 17px;\n          background: #d43c33; }\n      .netease-music main .page-remd .subpage-remd {\n        padding-bottom: 20px; }\n        .netease-music main .page-remd .subpage-remd .item-remd {\n          display: flex;\n          flex-flow: wrap;\n          justify-content: space-between;\n          margin-top: 15px; }\n          .netease-music main .page-remd .subpage-remd .item-remd a {\n            margin-bottom: 18px;\n            width: 6.6599rem; }\n            .netease-music main .page-remd .subpage-remd .item-remd a img {\n              width: 6.56329rem;\n              height: 6.56329rem; }\n            .netease-music main .page-remd .subpage-remd .item-remd a p {\n              padding: 5px 3px 0;\n              display: -webkit-box;\n              -webkit-line-clamp: 2;\n              -webkit-box-orient: vertical;\n              font-size: 13px;\n              overflow: hidden;\n              text-overflow: ellipsis; }\n      .netease-music main .page-remd .subpage-latest ul {\n        margin-top: 15px;\n        padding-left: 10px; }\n        .netease-music main .page-remd .subpage-latest ul .item-latest {\n          position: relative;\n          padding: 5px 0;\n          border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n          .netease-music main .page-remd .subpage-latest ul .item-latest::after {\n            position: absolute;\n            content: '';\n            display: block;\n            top: calc(50% - 11px);\n            right: 10px;\n            width: 23px;\n            height: 22px;\n            background-position: -23.5px 0;\n            background-size: 166px 97px; }\n          .netease-music main .page-remd .subpage-latest ul .item-latest .song {\n            line-height: 25.5px;\n            font-size: 17px; }\n          .netease-music main .page-remd .subpage-latest ul .item-latest .singer {\n            position: relative;\n            padding-left: 18px;\n            line-height: 18px;\n            font-size: 12px;\n            color: #888888; }\n            .netease-music main .page-remd .subpage-latest ul .item-latest .singer::before {\n              content: '';\n              display: block;\n              position: absolute;\n              top: calc(50% - 4px);\n              left: 0;\n              width: 12px;\n              height: 8px;\n              background-size: 166px 97px; }\n      .netease-music main .page-remd .subpage-profile {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n        align-items: center;\n        padding-top: 50px;\n        width: 20rem;\n        height: 10.65971rem;\n        background-size: cover; }\n        .netease-music main .page-remd .subpage-profile svg {\n          height: 44px; }\n        .netease-music main .page-remd .subpage-profile .self-info {\n          margin-top: 20px;\n          display: flex; }\n          .netease-music main .page-remd .subpage-profile .self-info li {\n            padding: 10px; }\n            .netease-music main .page-remd .subpage-profile .self-info li .iconfont {\n              font-size: 23px; }\n        .netease-music main .page-remd .subpage-profile .copyright {\n          text-align: center;\n          font-size: 12px;\n          line-height: 20px; }\n          .netease-music main .page-remd .subpage-profile .copyright span {\n            color: #888888; }\n          .netease-music main .page-remd .subpage-profile .copyright a {\n            color: #d43c33;\n            text-decoration: underline; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(21);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(1)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../node_modules/css-loader/index.js!./normalize.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/index.js!./normalize.css");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */\n\n/* Document\n   ========================================================================== */\n\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in iOS.\n */\n\nhtml {\n    line-height: 1.15; /* 1 */\n    -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers.\n */\n\nbody {\n    margin: 0;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n    font-size: 2em;\n    margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n    box-sizing: content-box; /* 1 */\n    height: 0; /* 1 */\n    overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n    font-family: monospace, monospace; /* 1 */\n    font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Remove the gray background on active links in IE 10.\n */\n\na {\n    background-color: transparent;\n}\n\n/**\n * 1. Remove the bottom border in Chrome 57-\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n    border-bottom: none; /* 1 */\n    text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n    font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n    font-family: monospace, monospace; /* 1 */\n    font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n    font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n    font-size: 75%;\n    line-height: 0;\n    position: relative;\n    vertical-align: baseline;\n}\n\nsub {\n    bottom: -0.25em;\n}\n\nsup {\n    top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10.\n */\n\nimg {\n    border-style: none;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers.\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n    font-family: inherit; /* 1 */\n    font-size: 100%; /* 1 */\n    line-height: 1.15; /* 1 */\n    margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n    overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n    text-transform: none;\n}\n\n/**\n * Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n    -webkit-appearance: button;\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n    border-style: none;\n    padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n    outline: 1px dotted ButtonText;\n}\n\n/**\n * Correct the padding in Firefox.\n */\n\nfieldset {\n    padding: 0.35em 0.75em 0.625em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n    box-sizing: border-box; /* 1 */\n    color: inherit; /* 2 */\n    display: table; /* 1 */\n    max-width: 100%; /* 1 */\n    padding: 0; /* 3 */\n    white-space: normal; /* 1 */\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n    vertical-align: baseline;\n}\n\n/**\n * Remove the default vertical scrollbar in IE 10+.\n */\n\ntextarea {\n    overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10.\n * 2. Remove the padding in IE 10.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n    box-sizing: border-box; /* 1 */\n    padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n    height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n    -webkit-appearance: textfield; /* 1 */\n    outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-decoration {\n    -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n    -webkit-appearance: button; /* 1 */\n    font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in Edge, IE 10+, and Firefox.\n */\n\ndetails {\n    display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n    display: list-item;\n}\n\n/* Misc\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10+.\n */\n\ntemplate {\n    display: none;\n}\n\n/**\n * Add the correct display in IE 10.\n */\n\n[hidden] {\n    display: none;\n}\n", ""]);
 
 // exports
 

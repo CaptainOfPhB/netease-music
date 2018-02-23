@@ -51,7 +51,7 @@
             let uploader = Qiniu.uploader({
                 runtimes: 'html5',
                 browse_button: 'upload-button',
-                uptoken_url: 'http://localhost:8888/uptoken',
+                uptoken_url: 'http://207.148.65.58:1234/uptoken',
                 domain: 'p3zj54rve.bkt.clouddn.com',
                 container: 'upload-area',
                 max_file_size: '100MB',

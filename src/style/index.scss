@@ -33,7 +33,8 @@ li {
   list-style: none;
 }
 
-input:focus {
+input:focus,
+input:active {
   outline: none;
 }
 
@@ -47,6 +48,27 @@ body {
   background: $globalBgColor;
 }
 
+@keyframes swing {
+  from {
+    transform: translateX(-3px);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 /* 仿网易云音乐 Mac 客户端 */
 .netease-music {
   position: relative;
@@ -56,7 +78,7 @@ body {
   header {
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     /* logo 展示区 */
     .logo {
       display: flex;
@@ -68,11 +90,33 @@ body {
         height: 25px;
       }
       .contact-me {
+        position: relative;
         padding: 5px 10px;
         color: #FFFFFF;
         font-size: 15px;
         border: 1px solid #FFFFFF;
         border-radius: 15px;
+        &::before {
+          content: 'click';
+          display: block;
+          position: absolute;
+          top: calc(50% - 7.5px);
+          left: -60px;
+          height: 15px;
+          line-height: 15px;
+          font-size: 15px;
+        }
+        &::after {
+          content: '→';
+          display: block;
+          position: absolute;
+          top: calc(50% - 7.5px);
+          left: -26px;
+          height: 15px;
+          line-height: 15px;
+          font-size: 20px;
+          animation: swing .3s ease infinite alternate-reverse;
+        }
         .iconfont {
           font-size: 15px;
           padding-right: 3px;
@@ -114,8 +158,43 @@ body {
 
   /* 页面主体部分 */
   main {
-    margin-top: 103px;
+    margin-top: 105px;
     /* 推荐音乐页面 */
+    .item-common {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+      .song-info {
+        overflow: hidden;
+        .song {
+          line-height: 25.5px;
+          font-size: 17px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .singer {
+          display: flex;
+          align-items: center;
+          line-height: 18px;
+          font-size: 12px;
+          color: #888888;
+          .SQsvg {
+            padding-right: 5px;
+            width: 14px;
+          }
+        }
+      }
+      .playsvg {
+        padding: 0 10px;
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
     .page-remd {
       padding-top: 20px;
       .subpage-remd,
@@ -147,10 +226,10 @@ body {
           margin-top: 15px;
           a {
             margin-bottom: 18px;
-            width: px(137.86);
+            width: 6.55rem;
             img {
-              width: px(135.86);
-              height: px(135.86);
+              width: 6.55rem;
+              height: 6.55rem;
             }
             p {
               padding: 5px 3px 0;
@@ -168,43 +247,6 @@ body {
         ul {
           margin-top: 15px;
           padding-left: 10px;
-          .item-latest {
-            position: relative;
-            padding: 5px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, .1);
-            &::after {
-              position: absolute;
-              content: '';
-              display: block;
-              top: calc(50% - 11px);
-              right: 10px;
-              width: 23px;
-              height: 22px;
-              background-position: -23.5px 0;
-              background-size: 166px 97px;
-            }
-            .song {
-              line-height: 25.5px;
-              font-size: 17px;
-            }
-            .singer {
-              position: relative;
-              padding-left: 18px;
-              line-height: 18px;
-              font-size: 12px;
-              color: #888888;
-              &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                top: calc(50% - 4px);
-                left: 0;
-                width: 12px;
-                height: 8px;
-                background-size: 166px 97px;
-              }
-            }
-          }
         }
       }
       .subpage-profile {
@@ -216,20 +258,39 @@ body {
         width: px(414);
         height: px(220.656);
         background-size: cover;
-        svg {
+        .logosvg {
           height: 44px;
         }
         .self-info {
-          margin-top: 20px;
+          margin-top: 50px;
           display: flex;
           li {
-            padding: 10px;
+            margin: 0 3px;
+            padding: 8px 10px;
+            border: 2px solid $globalTextColor;
             .iconfont {
               font-size: 23px;
             }
           }
+          &.active {
+            li {
+              &:nth-child(1) {
+                animation: jump .3s 0s ease-in-out;
+              }
+              &:nth-child(2) {
+                animation: jump .3s .1s ease-in-out;
+              }
+              &:nth-child(3) {
+                animation: jump .3s .2s ease-in-out;
+              }
+              &:nth-child(4) {
+                animation: jump .3s .3s ease-in-out;
+              }
+            }
+          }
         }
         .copyright {
+          margin: 5px 0;
           text-align: center;
           font-size: 12px;
           line-height: 20px;
@@ -242,6 +303,211 @@ body {
           }
         }
       }
+    }
+    .page-hottop {
+      .bg-hottop {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: px(161.031);
+        padding-left: 20px;
+        background-size: contain;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, .2);
+        }
+        .hoticon {
+          width: 142px;
+          height: 67px;
+          z-index: 1;
+          background-position: -24px -30px;
+          background-size: 166px 97px;
+        }
+        .hottime {
+          margin-top: 10px;
+          font-size: 12px;
+          color: #fffc;
+          z-index: 1;
+        }
+      }
+      ul {
+        padding-left: 40px;
+        .item-common {
+          position: relative;
+          &::before {
+            display: block;
+            position: absolute;
+            left: -28px;
+            color: #999999;
+            font-size: 17px;
+            font-family: Helvetica, sans-serif;
+          }
+          &:nth-child(1)::before,
+          &:nth-child(2)::before,
+          &:nth-child(3)::before {
+            color: $globalThemeColor;
+          }
+          &:nth-child(1)::before {
+            content: '01';
+          }
+          &:nth-child(2)::before {
+            content: '02';
+          }
+          &:nth-child(3)::before {
+            content: '03';
+          }
+          &:nth-child(4)::before {
+            content: '04';
+          }
+          &:nth-child(5)::before {
+            content: '05';
+          }
+          &:nth-child(6)::before {
+            content: '06';
+          }
+          &:nth-child(7)::before {
+            content: '07';
+          }
+          &:nth-child(8)::before {
+            content: '08';
+          }
+          &:nth-child(9)::before {
+            content: '09';
+          }
+          &:nth-child(10)::before {
+            content: '10';
+          }
+          &:nth-child(11)::before {
+            content: '11';
+          }
+          &:nth-child(12)::before {
+            content: '12';
+          }
+          &:nth-child(13)::before {
+            content: '13';
+          }
+          &:nth-child(14)::before {
+            content: '14';
+          }
+          &:nth-child(15)::before {
+            content: '15';
+          }
+          &:nth-child(16)::before {
+            content: '16';
+          }
+          &:nth-child(17)::before {
+            content: '17';
+          }
+          &:nth-child(18)::before {
+            content: '18';
+          }
+          &:nth-child(19)::before {
+            content: '19';
+          }
+          &:nth-child(20)::before {
+            content: '20';
+          }
+        }
+      }
+    }
+    .page-search {
+      .title {
+        position: relative;
+        padding: 10px 0 10px 8px;
+        font-size: 17px;
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: calc(50% - 8px);
+          left: 0;
+          width: 2px;
+          height: 16px;
+          font-size: 17px;
+          background: $globalThemeColor;
+        }
+      }
+      .search-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        .search-icon {
+          margin: 4px -26px 0 0;
+          z-index: 1;
+        }
+        label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          input {
+            padding: 0 30px;
+            width: 100%;
+            height: 30px;
+            background: #ebecec;
+            border: none;
+            border-radius: 15px;
+          }
+        }
+        .close-button {
+          margin: 1px 0 0 -23px;
+        }
+      }
+      .top-serach-sample {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0 5px;
+        li {
+          margin: 5px;
+          padding: 8px 12px;
+          line-height: 14px;
+          font-size: 14px;
+          border: 1px solid rgba(0, 0, 0, .1);
+          border-radius: 16px;
+        }
+      }
+      .top-search-history {
+        margin-top: 10px;
+        li {
+          display: flex;
+          justify-content: flex-start;
+          .history-icon {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+          }
+          .history-item {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            padding: 13px 15px 13px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            .history-text {
+              font-size: 14px;
+              line-height: 19px;
+            }
+          }
+        }
+      }
+      .top-search-result {
+        ul {
+          padding-left: 10px;
+        }
+      }
+
+    }
+    .hide {
+      display: none;
     }
   }
 }

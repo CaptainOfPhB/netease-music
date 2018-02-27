@@ -33,6 +33,11 @@
   **问题描述**：后台管理面板在上传文件时，再次上传文件会导致之前上传的文件不能够编辑。
   
   **解决方法**：利用状态机，在用户上传文件前判断状态机状态，若状态机为 `true`，则 `return turn` 给其后环节，允许用户上传；若状态机为 `false`，则 `return false` 给其后环节，阻止用户上传。判断状态机环节在 **七牛云** 所提供 API 的钩子函数中。 
+- **后台上传完歌曲进行编辑时正确显示上传歌曲的信息**
+
+   **问题描述**：在第一次上传完歌曲后，之后每次上传歌曲后的编辑歌曲信息界面初始化都为第一次上传的歌曲信息。
+   
+   **解决方法**：在每次上传歌曲后，都初始化歌曲信息模板，将最新数据更新至歌曲信息模板，然后渲染至歌曲编辑页。
 - **阻止移动端浮层滚动事件冒泡**
   
   **问题描述**：`display: fixed` 定位的元素其滚动事件会冒泡至父级元素，至使被该 `fixed` 定位的元素遮挡的父级元素也一起滚动。
@@ -52,4 +57,52 @@
   $('.浮层元素').on('touchmove', (event) => {
     event.preventDefault();
   })
+  ```
+- **阻止移动端播放光盘旋转动画暂停后再次启动时旋转角度恢复至初始状态**
+  
+  **问题描述**：移动端 CSS 属性 `animation-play-state` 无效，因为该属性仍在实验阶段，致使播放歌曲页面再点击暂停按钮时光盘 div 仍在旋转，再次点击播放按钮时光盘 div 会恢复至最初始角度开始旋转动画，不能从暂停时的角度开始旋转（不能记录状态）。
+  
+  **解决方法**：在光盘 div 上加一层 wrapper，利用 JS，在点击暂停按钮时进行判断，若首次暂停，则令 wrapper 的 transform 为暂停一瞬间的光盘 div 的 transform 值，否则 wrapper 的 transform 为光盘当前的 transform 值加上暂停一瞬间的光盘 div 的 transform 值；再次点击播放时，光盘 div 要恢复初始状态，由于 wrapper 的 transform 值刚好是光盘 div 需要转回去的值，因此在视觉上的表现为光盘是从暂停的位置开始旋转的。
+  
+  **HTML**
+  ```html
+  <div class="song-wrapper">
+      <div class="song-disc"></div>
+  </div>
+  ```
+  
+  **CSS**
+  ```css
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .rotate{
+    animation: rotate 15s linear infinite;
+  }
+  ```
+  
+  **JS**
+  ```javascript
+  let wrap = document.querySelector('.song-wrapper');
+  let disc = wrap.querySelector('.song-disc');
+  let isPlaying = true;
+  $('.play-pause-btn').on('click',()=>{
+      isPlaying ? pause() : play();
+  });
+  function pause() {
+      console.log('暂停')
+      isPlaying = false;
+      let cTransform = getComputedStyle(wrap).transform; // 获取容器的旋转角度
+      let iTransform = getComputedStyle(disc).transform; // 获取磁盘的旋转角度
+      // 若初次暂停，则容器的 transform 为磁盘的 transform 值，否则容器的 transform 为自身的 transform 值+ 磁盘的 transform值
+      wrap.style.transform = cTransform ===  'none' ? iTransform : iTransform.concat(' ', cTransform);
+      disc.classList.remove('rotate');
+  }
+  function play() {
+      console.log('播放')
+      isPlaying = true;
+      disc.classList.add('rotate');
+  }
   ```

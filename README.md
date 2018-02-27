@@ -18,7 +18,7 @@
 - [Webpack](https://webpack.js.org/)：**前端工程化** 打包工具，大大节省了开发效率
 - [LeanCloud](https://leancloud.cn/)：提供一站式后端云服务，作为歌曲信息存储的后台云服务器
 - [七牛云](https://www.qiniu.com)：国内领先的企业级云服务商，作为歌曲文件存储的后台云服务器
-- [Vultr]()：**SSD VPS Server**，虚拟服务器，利用 **PM2** 开启 **Node.js** 服务监听 **1234** 端口的请求，用来生成 `uptoken` ，在后台上传文件前进行初始化
+- [Vultr]()：**SSD VPS Server**，虚拟服务器，利用 **PM2** 开启 **Node.js** 服务监听 **1234** 端口的请求，用来生成 `uptoken` ，在后台向七牛上传文件前进行初始化，给予权限
 
 ### Releases
 #### Version 1.0

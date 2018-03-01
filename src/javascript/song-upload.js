@@ -7,8 +7,6 @@
 (function () {
     'use strict';
 
-    // console.log('引入 song-upload.js 成功！');
-
     let view = {
         el: $('.upload-page'),
         render(data) {
@@ -16,28 +14,48 @@
         },
         uploading() {
             this.el.find('#upload-area').addClass('uploading');
-            this.el.find('#upload-button').addClass('hide');
         },
         uploaded() {
             this.el.find('#upload-area').removeClass('uploading');
-            this.el.find('#upload-button').removeClass('hide');
         }
     };
 
     let model = {
-        data: {},
+        data: {
+            song: '',
+            singer: '',
+            lyric: '',
+            url: ''
+        },
         template: ` 
             <div id="upload-area">
                 <div id="upload-button">选择文件</div>
             </div> 
         `,
         refreshData(up, info) {
-            let {key} = JSON.parse(info.response);
-            this.data = {
-                song: key,
-                singer: '',
-                url: up.getOption('domain') + '/' + key
-            };
+            let resdata = this.splitSongInfo(JSON.parse(info.response), up.getOption('domain'));
+            this.data = JSON.parse(JSON.stringify(resdata));
+        },
+        splitSongInfo({key}, domain) {
+            let rmSuffix = key.replace(/.mp3|.mp4|.flac/, '');
+            let splitSongName = rmSuffix ? rmSuffix.split('-') : key.split('-');
+            if (splitSongName.length === 2) {
+                return {
+                    song: splitSongName[0].trim(),
+                    singer: splitSongName[1].trim(),
+                    url: `${domain}/${key}`,
+                    lyric: '',
+                    cover: ''
+                }
+            } else {
+                return {
+                    song: key,
+                    singer: '',
+                    url: `${domain}/${key}`,
+                    lyric: '',
+                    cover: ''
+                }
+            }
         }
     };
 
@@ -57,7 +75,7 @@
                 max_file_size: '100MB',
                 dragdrop: true,
                 drop_element: 'upload-area',
-                chunk_size: '4MB',
+                chunk_size: '10MB',
                 auto_start: true,
                 init: {
                     UploadProgress() {
@@ -65,8 +83,6 @@
                     },
                     FileUploaded(up, file, info) {
                         model.refreshData(up, info);
-                    },
-                    UploadComplete() {
                         view.uploaded();
                         EventsHub.publish('uploaded', model.data);
                     }

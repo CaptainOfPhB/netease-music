@@ -11,8 +11,6 @@
 
     let view = {
         el: $('.edit-page'),
-        init() {
-        },
         render(data) {
             this.el.empty().append(data);
         },
@@ -32,36 +30,44 @@
             url: '',
         },
         template: `
-            <p class="tip">上传成功！请编辑歌曲信息！</p>
             <div class="edit-area ">
-                <label>音乐标题：<input type="text" name="song" value="{{song}}"></label>
-                <label>歌手：<input type="text" name="singer" value="{{singer}}"></label>
-                <label>歌曲外链：<input type="text" name="url" value="{{url}}" disabled></label>
-                <div class="confirm">确&nbsp;&nbsp;定</div>
+                <label>歌曲名称</label>
+                <input type="text" class="song" name="song" value="{{song}}">
+                <label>歌手</label>
+                <input type="text" class="singer" name="singer" value="{{singer}}">
+                <label>歌词</label>
+                <textarea class="lyric" name="lyric" cols="30" rows="5"">{{lyric}}</textarea>
+                <label>歌曲封面链接</label>
+                <input type="text" class="cover" name="cover" value="{{cover}}">
+                <label>歌曲外链</label>
+                <input type="text" class="url" name="url" value="{{url}}" disabled>
+                <div class="button-wrapper">
+                    <div class="confirm">确&nbsp;&nbsp;定</div>
+                </div>
             </div>
         `,
         temporaryTemplate: '',
-        init() {
+        initTemporaryTemplate() {
             this.temporaryTemplate = this.template;
         },
         refreshData(data) {
             Object.assign(this.data, JSON.parse(JSON.stringify(data)));
         },
         generateTemporaryTemplate() {
+            this.initTemporaryTemplate();
             for (let key in this.data) {
                 this.temporaryTemplate = this.temporaryTemplate.replace(`{{${key}}}`, this.data[key]);
             }
         },
         getLatestData(element) {
             for (let key in this.data) {
-                this.data[key] = element.find(`input[name=${key}]`).val() || '暂无';
+                this.data[key] = element.find(`.${key}`).val() || '暂无';
             }
         }
     };
 
     let controller = {
         init() {
-            model.init();
             this.bindEvents();
         },
         bindEvents() {
@@ -71,6 +77,7 @@
                 model.generateTemporaryTemplate();
                 view.render(model.temporaryTemplate);
                 view.show();
+                alertify.alert("歌曲上传成功！请编辑歌曲信息！");
             });
             this.edited();
         },

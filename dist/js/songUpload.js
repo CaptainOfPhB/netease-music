@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 21:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80,8 +80,6 @@
 (function () {
     'use strict';
 
-    // console.log('引入 song-upload.js 成功！');
-
     var view = {
         el: $('.upload-page'),
         render: function render(data) {
@@ -89,26 +87,46 @@
         },
         uploading: function uploading() {
             this.el.find('#upload-area').addClass('uploading');
-            this.el.find('#upload-button').addClass('hide');
         },
         uploaded: function uploaded() {
             this.el.find('#upload-area').removeClass('uploading');
-            this.el.find('#upload-button').removeClass('hide');
         }
     };
 
     var model = {
-        data: {},
+        data: {
+            song: '',
+            singer: '',
+            lyric: '',
+            url: ''
+        },
         template: ' \n            <div id="upload-area">\n                <div id="upload-button">\u9009\u62E9\u6587\u4EF6</div>\n            </div> \n        ',
         refreshData: function refreshData(up, info) {
-            var _JSON$parse = JSON.parse(info.response),
-                key = _JSON$parse.key;
+            var resdata = this.splitSongInfo(JSON.parse(info.response), up.getOption('domain'));
+            this.data = JSON.parse(JSON.stringify(resdata));
+        },
+        splitSongInfo: function splitSongInfo(_ref, domain) {
+            var key = _ref.key;
 
-            this.data = {
-                song: key,
-                singer: '',
-                url: up.getOption('domain') + '/' + key
-            };
+            var rmSuffix = key.replace(/.mp3|.mp4|.flac/, '');
+            var splitSongName = rmSuffix ? rmSuffix.split('-') : key.split('-');
+            if (splitSongName.length === 2) {
+                return {
+                    song: splitSongName[0].trim(),
+                    singer: splitSongName[1].trim(),
+                    url: domain + '/' + key,
+                    lyric: '',
+                    cover: ''
+                };
+            } else {
+                return {
+                    song: key,
+                    singer: '',
+                    url: domain + '/' + key,
+                    lyric: '',
+                    cover: ''
+                };
+            }
         }
     };
 
@@ -128,7 +146,7 @@
                 max_file_size: '100MB',
                 dragdrop: true,
                 drop_element: 'upload-area',
-                chunk_size: '4MB',
+                chunk_size: '10MB',
                 auto_start: true,
                 init: {
                     UploadProgress: function UploadProgress() {
@@ -136,8 +154,6 @@
                     },
                     FileUploaded: function FileUploaded(up, file, info) {
                         model.refreshData(up, info);
-                    },
-                    UploadComplete: function UploadComplete() {
                         view.uploaded();
                         EventsHub.publish('uploaded', model.data);
                     }

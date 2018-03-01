@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 17:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84,7 +84,6 @@
 
     var view = {
         el: $('.edit-page'),
-        init: function init() {},
         render: function render(data) {
             this.el.empty().append(data);
         },
@@ -103,29 +102,29 @@
             singer: '',
             url: ''
         },
-        template: '\n            <p class="tip">\u4E0A\u4F20\u6210\u529F\uFF01\u8BF7\u7F16\u8F91\u6B4C\u66F2\u4FE1\u606F\uFF01</p>\n            <div class="edit-area ">\n                <label>\u97F3\u4E50\u6807\u9898\uFF1A<input type="text" name="song" value="{{song}}"></label>\n                <label>\u6B4C\u624B\uFF1A<input type="text" name="singer" value="{{singer}}"></label>\n                <label>\u6B4C\u66F2\u5916\u94FE\uFF1A<input type="text" name="url" value="{{url}}" disabled></label>\n                <div class="confirm">\u786E&nbsp;&nbsp;\u5B9A</div>\n            </div>\n        ',
+        template: '\n            <div class="edit-area ">\n                <label>\u6B4C\u66F2\u540D\u79F0</label>\n                <input type="text" class="song" name="song" value="{{song}}">\n                <label>\u6B4C\u624B</label>\n                <input type="text" class="singer" name="singer" value="{{singer}}">\n                <label>\u6B4C\u8BCD</label>\n                <textarea class="lyric" name="lyric" cols="30" rows="5"">{{lyric}}</textarea>\n                <label>\u6B4C\u66F2\u5C01\u9762\u94FE\u63A5</label>\n                <input type="text" class="cover" name="cover" value="{{cover}}">\n                <label>\u6B4C\u66F2\u5916\u94FE</label>\n                <input type="text" class="url" name="url" value="{{url}}" disabled>\n                <div class="button-wrapper">\n                    <div class="confirm">\u786E&nbsp;&nbsp;\u5B9A</div>\n                </div>\n            </div>\n        ',
         temporaryTemplate: '',
-        init: function init() {
+        initTemporaryTemplate: function initTemporaryTemplate() {
             this.temporaryTemplate = this.template;
         },
         refreshData: function refreshData(data) {
             Object.assign(this.data, JSON.parse(JSON.stringify(data)));
         },
         generateTemporaryTemplate: function generateTemporaryTemplate() {
+            this.initTemporaryTemplate();
             for (var key in this.data) {
                 this.temporaryTemplate = this.temporaryTemplate.replace('{{' + key + '}}', this.data[key]);
             }
         },
         getLatestData: function getLatestData(element) {
             for (var key in this.data) {
-                this.data[key] = element.find('input[name=' + key + ']').val() || '暂无';
+                this.data[key] = element.find('.' + key).val() || '暂无';
             }
         }
     };
 
     var controller = {
         init: function init() {
-            model.init();
             this.bindEvents();
         },
         bindEvents: function bindEvents() {
@@ -135,6 +134,7 @@
                 model.generateTemporaryTemplate();
                 view.render(model.temporaryTemplate);
                 view.show();
+                alertify.alert("歌曲上传成功！请编辑歌曲信息！");
             });
             this.edited();
         },

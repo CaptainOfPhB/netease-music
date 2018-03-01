@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 20:
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79,8 +79,6 @@
  */
 (function () {
     'use strict';
-
-    // console.log('引入 song-show.js 成功！');
 
     var view = {
         el: $('.info-page'),
@@ -109,14 +107,15 @@
         decomposeDom: function decomposeDom() {
             return {
                 $songDom: this.el.find('input[name="song"]'),
-                $singerDom: this.el.find('input[name="singer"]')
+                $singerDom: this.el.find('input[name="singer"]'),
+                $coverDom: this.el.find('input[name="cover"]')
             };
         }
     };
 
     var model = {
         data: {},
-        template: '\n            <label><span>\u97F3\u4E50</span><input type="text" name="song" value="{{song}}"></label>\n            <label><span>\u6B4C\u624B</span><input type="text" name="singer" value="{{singer}}"></label>\n            <div class="button">\n                <div class="delete"><i class="iconfont icon-warning"></i>\u5220&nbsp;&nbsp;\u9664</div>\n                <div class="confirm"><i class="iconfont icon-trues-active"></i>\u786E&nbsp;&nbsp;\u5B9A</div>\n            </div>\n        ',
+        template: '\n            <div class="show-area ">\n                <label>\u6B4C\u66F2\u540D\u79F0</label>\n                <input type="text" class="song" name="song" value="{{song}}">\n                <label>\u6B4C\u624B</label>\n                <input type="text" class="singer" name="singer" value="{{singer}}">\n                <label>\u6B4C\u8BCD</label>\n                <textarea class="lyric" name="lyric" cols="30" rows="8"">{{lyric}}</textarea>\n                <label>\u5C01\u9762\u94FE\u63A5</label>\n                <input type="text" class="cover" name="cover" value="{{cover}}">\n                <div class="button-wrapper">\n                    <div class="delete"><i class="iconfont icon-warning"></i>\u5220&nbsp;&nbsp;\u9664</div>\n                    <div class="confirm"><i class="iconfont icon-trues-active"></i>\u786E&nbsp;&nbsp;\u5B9A</div>\n                </div>\n            </div>\n        ',
         temporaryTemplate: '',
         refreshData: function refreshData(data) {
             this.data = JSON.parse(JSON.stringify(data));
@@ -143,13 +142,16 @@
         fetchModifiedData: function fetchModifiedData(view) {
             return {
                 song: view.$songDom.val(),
-                singer: view.$singerDom.val()
+                singer: view.$singerDom.val(),
+                cover: view.$coverDom.val()
             };
         },
         updateData: function updateData(modifiedData) {
             var modified = {
                 song: false,
-                singer: false
+                singer: false,
+                lyric: false,
+                cover: false
             };
             for (var key in modifiedData) {
                 if (this.data[key] !== modifiedData[key]) {
@@ -157,7 +159,7 @@
                     modified[key] = true;
                 }
             }
-            if (modified.song || modified.singer) {
+            if (modified.song || modified.singer || modified.cover || modified.lyric) {
                 var song = AV.Object.createWithoutData('SongList', this.data.id);
                 for (var _key in modified) {
                     if (modified[_key]) {
@@ -171,14 +173,13 @@
 
     var controller = {
         init: function init() {
-            view.render(model.template);
             this.bindEvents();
         },
         bindEvents: function bindEvents() {
             EventsHub.subscribe('modify', function (data) {
                 model.refreshData(data);
-                view.show();
                 view.render(model.generateTemporaryTemplate(model.template, model.data));
+                view.show();
             });
             EventsHub.subscribe('new', function () {
                 view.hide();

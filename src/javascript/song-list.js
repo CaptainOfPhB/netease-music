@@ -7,14 +7,15 @@
 (function () {
     'use strict';
 
-    // console.log('引入 song-list.js 成功！');
-
     let view = {
         el: $('.song-list > ul'),
         render(datas) {
             datas.map((data) => {
                 this.el.prepend(data);
             });
+        },
+        find(selectorOrDom) {
+           return this.el.find(selectorOrDom);
         },
         active(dom) {
             this.el.find('li').map((index, domLi) => {
@@ -54,15 +55,19 @@
         data: {},
         template: `
             <li id="{{id}}">
-                <p class="song-name" title="{{song}}"><a href="http://{{url}}" target="_blank">{{song}}</a></p>
+                <p class="song" title="{{song}}"><a href="http://{{url}}" target="_blank">{{song}}</a></p>
                 <p class="singer" title="{{singer}}"><i class="iconfont icon-geshou"></i>{{singer}}</p>
+                <p class="lyric">{{lyric}}</p>
+                <p class="cover">{{cover}}</p>
             </li>
         `,
-        templateSong: `<p class="song-name" title="{{song}}"><a href="http://{{url}}" target="_blank">{{song}}</a></p>`,
+        templateSong: `<p class="song" title="{{song}}"><a href="http://{{url}}" target="_blank">{{song}}</a></p>`,
         templateSinger: `<p class="singer" title="{{singer}}"><i class="iconfont icon-geshou"></i>{{singer}}</p>`,
+        templateLyric: `<p class="lyric">{{lyric}}</p>`,
+        templateCover: `<p class="cover">{{cover}}</p>`,
         temporaryTemplate: [],
         refreshData(data) {
-            Object.assign(this.data, JSON.parse(JSON.stringify(data)));
+            this.data = JSON.parse(JSON.stringify(data));
         },
         generateTemporaryTemplate(temporaryTemplate, data) {
             for (let key in data) {
@@ -79,6 +84,12 @@
                     case 'url':
                         temporaryTemplate = temporaryTemplate.replace(/\{\{url\}\}/g, data[key]);
                         break;
+                    case 'cover':
+                        temporaryTemplate = temporaryTemplate.replace(/\{\{cover\}\}/g, data[key]);
+                        break;
+                    case 'lyric':
+                        temporaryTemplate = temporaryTemplate.replace(/\{\{lyric\}\}/g, data[key]);
+                        break;
                 }
             }
             return temporaryTemplate;
@@ -92,7 +103,9 @@
                             id: song.id,
                             song: song.attributes.song,
                             singer: song.attributes.singer,
-                            url: song.attributes.url
+                            lyric: song.attributes.lyric,
+                            cover: song.attributes.cover,
+                            url: song.attributes.url,
                         }
                     });
                     return this.showLeanCloudData();
@@ -140,17 +153,26 @@
                 model.refreshData(data);
                 view.blink(view.fetchCurrentLiDom(model.data.id));
                 view.clearCurrentLiDom(view.fetchCurrentLiDom(model.data.id));
-                view.updateCurrentLiDom(view.fetchCurrentLiDom(model.data.id), [model.generateTemporaryTemplate(model.templateSinger, model.data), model.generateTemporaryTemplate(model.templateSong, model.data)]);
+                let newtemplate = [
+                    model.generateTemporaryTemplate(model.templateLyric, model.data),
+                    model.generateTemporaryTemplate(model.templateCover, model.data),
+                    model.generateTemporaryTemplate(model.templateSinger, model.data),
+                    model.generateTemporaryTemplate(model.templateSong, model.data)
+                ];
+                view.updateCurrentLiDom(view.fetchCurrentLiDom(model.data.id), newtemplate);
             });
         },
         clickEvent() {
             view.el.on('click', 'li', (event) => {
                 view.active(event.currentTarget);
+                let $currentLi = view.find(event.currentTarget);
                 EventsHub.publish('modify', {
-                    id: event.currentTarget.id,
-                    song: event.currentTarget.firstElementChild.firstElementChild.textContent,
-                    singer: event.currentTarget.lastElementChild.textContent,
-                    url: event.currentTarget.firstElementChild.firstElementChild.href.substring(7)
+                    id: $currentLi.attr('id'),
+                    song: $currentLi.find('.song').text().trim(),
+                    singer: $currentLi.find('.singer').text().trim(),
+                    url: $currentLi.find('a').attr('href').trim(),
+                    cover: $currentLi.find('.cover').text().trim(),
+                    lyric: $currentLi.find('.lyric').text().trim()
                 });
             })
         }

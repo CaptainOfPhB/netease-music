@@ -106,3 +106,16 @@
       disc.classList.add('rotate');
   }
   ```
+- **禁止移动端元素被点击时出现闪烁**
+  
+  **问题描述**：移动端页面元素被点击出现闪烁，初步考虑可能是移动端与用户交互特别设置的提示。
+  
+  **解决方法**：使用 CSS 属性 `-webkit-tap-highlight-color` 解决。
+  
+  **CSS**
+  
+  ```css
+  *{
+    -webkit-tap-highlight-color: transparent;
+  }
+  ```

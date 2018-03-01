@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports) {
 
 /*
@@ -146,7 +147,8 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -528,7 +530,89 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 2 */
+
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(19);
+
+(function () {
+    'use strict';
+
+    var appId = '3lYwUmOrkdkkv4zmxHzDbp3w-gzGzoHsz';
+    var appKey = '5KWyRdYSGUIjOYDMirAnfDJ4';
+    AV.init({ appId: appId, appKey: appKey });
+
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: {
+            delay: 5000
+        },
+        effect: 'fade'
+    });
+})(); /*
+       * admin.js
+       * Copyright (C) 2018 daijt
+       *
+       * Distributed under terms of the MIT license.
+       */
+
+/***/ }),
+
+/***/ 19:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(20);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(1)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./admin.scss", function() {
+		var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./admin.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports) {
 
 
@@ -623,97 +707,8 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-__webpack_require__(13);
-
-(function () {
-    'use strict';
-
-    // console.log('引入 admin.js 成功！');
-
-    var appId = '3lYwUmOrkdkkv4zmxHzDbp3w-gzGzoHsz';
-    var appKey = '5KWyRdYSGUIjOYDMirAnfDJ4';
-    AV.init({ appId: appId, appKey: appKey });
-
-    var mySwiper = new Swiper('.swiper-container', {
-        autoplay: {
-            delay: 5000
-        },
-        effect: 'fade'
-    });
-})(); /*
-       * admin.js
-       * Copyright (C) 2018 daijt
-       *
-       * Distributed under terms of the MIT license.
-       */
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(14);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(1)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./admin.scss", function() {
-		var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./admin.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 14 */
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -721,10 +716,11 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/*\n * admin.css\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\n/* global variable */\n/* global style */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: content-box; }\n\na {\n  color: inherit;\n  text-decoration: none; }\n\nli {\n  list-style: none; }\n\ninput:focus {\n  outline: none; }\n\nbody {\n  height: 100vh;\n  display: flex;\n  font-family: \"Tahoma\", sans-serif;\n  box-sizing: border-box; }\n\n@keyframes fadein {\n  from {\n    opacity: 1;\n    transform: scale(0); }\n  to {\n    opacity: 0;\n    transform: scale(1); } }\n\n@keyframes blink {\n  from {\n    background: #efefef; }\n  to {\n    background: #c8c8c8; } }\n\n.blink {\n  animation: blink .5s 5 ease-in-out; }\n\n/* 滚动条 */\n::-webkit-scrollbar {\n  width: 5px; }\n\n/* 滚动条滑块 */\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 0, 0, 0.1); }\n\n/* 仿网易云音乐 Mac 客户端 */\n.neteasemusic {\n  margin: auto;\n  width: 1000px;\n  height: 670px;\n  border-radius: 5px;\n  box-shadow: 0 0 15px #404040;\n  transition: all ease .3s;\n  overflow: hidden; }\n  .neteasemusic:hover {\n    box-shadow: 0 0 25px #404040; }\n\n/* 顶部导航及用户登录区 */\n.top-bar {\n  position: relative;\n  height: 60px;\n  background: #ba2502;\n  /* 个人信息 */ }\n  .top-bar .button {\n    position: absolute;\n    top: 5px;\n    left: 27px;\n    width: 12px;\n    height: 12px;\n    line-height: 10px;\n    text-align: center;\n    color: rgba(0, 0, 0, 0.4);\n    font-size: 12px;\n    border-radius: 50%;\n    background: #f6be4f; }\n    .top-bar .button::before {\n      content: '';\n      display: block;\n      position: absolute;\n      top: 0;\n      left: -20px;\n      width: 12px;\n      height: 12px;\n      border-radius: 50%;\n      background: #ed6b60; }\n    .top-bar .button::after {\n      content: '';\n      display: block;\n      position: absolute;\n      top: 0;\n      right: -20px;\n      width: 12px;\n      height: 12px;\n      border-radius: 50%;\n      background: #62c655; }\n  .top-bar .logo {\n    position: absolute;\n    bottom: 0;\n    left: 10px;\n    width: 160px;\n    height: 40px;\n    background-size: contain; }\n  .top-bar .profile {\n    position: absolute;\n    right: 20px;\n    bottom: 12px;\n    color: #eeeeee; }\n    .top-bar .profile li {\n      float: left;\n      padding: 0 8px;\n      line-height: 14px;\n      font-size: 14px; }\n      .top-bar .profile li .iconfont {\n        padding-right: 5px; }\n      .top-bar .profile li a {\n        text-decoration: underline; }\n\n/* 用户交互区 */\n.interaction {\n  display: flex;\n  /* 侧边栏 */\n  /* 右侧面板 */ }\n  .interaction .aside-bar {\n    position: relative;\n    width: 200px;\n    height: 610px;\n    background: #f6f6f6;\n    overflow: hidden;\n    /* 音乐列表 */\n    /* 添加歌曲 */ }\n    .interaction .aside-bar .song-list {\n      height: 549px;\n      font-size: 12px;\n      overflow: auto;\n      /* 歌曲选中样式 */ }\n      .interaction .aside-bar .song-list li {\n        /* 歌曲信息 */\n        /* 歌名 */\n        /* 歌手 */ }\n        .interaction .aside-bar .song-list li.active {\n          background: #c8c8c8; }\n        .interaction .aside-bar .song-list li.active::before {\n          position: absolute;\n          top: calc(50% - 20px);\n          left: 0;\n          content: '';\n          display: block;\n          width: 5px;\n          height: 40px;\n          background: #ba2502; }\n        .interaction .aside-bar .song-list li p {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis; }\n        .interaction .aside-bar .song-list li p.song-name {\n          font-size: 13px; }\n        .interaction .aside-bar .song-list li p.singer {\n          color: #494949; }\n          .interaction .aside-bar .song-list li p.singer .iconfont {\n            padding-right: 3px;\n            font-weight: bolder;\n            font-size: 12px; }\n    .interaction .aside-bar #add-song {\n      position: fixed;\n      padding: 19px 0;\n      width: 200px;\n      color: #333333;\n      text-align: center;\n      border-top: 1px solid #ddd;\n      border-radius: 0 0 0 5px;\n      cursor: pointer;\n      background: #ece9e6;\n      background: linear-gradient(to top, #e6e6e6, #ffffff);\n      transition: all ease .1s; }\n      .interaction .aside-bar #add-song:hover {\n        color: #ba2502; }\n      .interaction .aside-bar #add-song .iconfont {\n        padding-right: 5px; }\n  .interaction li {\n    position: relative;\n    padding: 5px 5px 5px 43px;\n    line-height: 20px;\n    cursor: pointer; }\n    .interaction li:nth-child(odd) {\n      background: #efefef; }\n    .interaction li:hover {\n      color: #ba2502; }\n    .interaction li::after {\n      position: absolute;\n      content: '';\n      top: calc(50% - 10px);\n      left: 10px;\n      width: 26px;\n      height: 26px;\n      display: block;\n      background-size: contain; }\n  .interaction .dashboard {\n    width: 800px;\n    background: #fafafa;\n    /* 欢迎页面 */\n    /* 查看音乐界面 */\n    /* 编辑歌曲页面 */\n    /* 新增歌曲页面 */ }\n    .interaction .dashboard .welcome-page {\n      margin: 70px auto;\n      width: 700px; }\n      .interaction .dashboard .welcome-page .swiper-container {\n        width: 100%;\n        height: 400px;\n        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }\n        .interaction .dashboard .welcome-page .swiper-container .swiper-slide {\n          background-position: center;\n          background-size: cover; }\n      .interaction .dashboard .welcome-page .welcome-info {\n        padding: 30px 0;\n        text-align: center;\n        font-size: 25px;\n        color: #ba2502; }\n        .interaction .dashboard .welcome-page .welcome-info .iconfont {\n          font-size: 25px;\n          padding-right: 10px; }\n    .interaction .dashboard .info-page {\n      margin: 140px auto;\n      padding: 50px 0;\n      display: flex;\n      flex-direction: column;\n      width: 600px;\n      border: 3px dashed #ddd;\n      border-radius: 10px; }\n      .interaction .dashboard .info-page label {\n        padding-right: 170px;\n        text-align: right;\n        line-height: 70px; }\n        .interaction .dashboard .info-page label input {\n          float: right;\n          margin: 15px auto;\n          padding: 0 10px;\n          width: 200px;\n          height: 40px;\n          font-size: 16px;\n          color: #333333;\n          border: none;\n          border-bottom: 3px solid #ba2502;\n          box-sizing: border-box;\n          background: transparent; }\n          .interaction .dashboard .info-page label input[name=\"url\"] {\n            cursor: text;\n            color: #999999; }\n        .interaction .dashboard .info-page label span {\n          position: relative;\n          padding: 11px 20px;\n          color: #eeeeee;\n          background: #ba2502; }\n          .interaction .dashboard .info-page label span::before {\n            position: absolute;\n            top: 0;\n            left: 0;\n            content: '';\n            display: block;\n            border-left: 7px solid #fafafa;\n            border-right: 7px solid transparent;\n            border-top: 21px solid transparent;\n            border-bottom: 21px solid #fafafa; }\n          .interaction .dashboard .info-page label span::after {\n            position: absolute;\n            top: 0;\n            right: 0;\n            content: '';\n            display: block;\n            border-left: 7px solid transparent;\n            border-right: 7px solid #fafafa;\n            border-top: 20px solid #fafafa;\n            border-bottom: 19px solid transparent; }\n      .interaction .dashboard .info-page .button {\n        padding: 0 30px;\n        display: flex;\n        flex-direction: row;\n        justify-content: center; }\n        .interaction .dashboard .info-page .button .confirm,\n        .interaction .dashboard .info-page .button .delete {\n          padding: 10px 0;\n          margin: 30px 20px 0;\n          width: 100px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border: 1px solid #ba2502;\n          border-radius: 5px;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .info-page .button .confirm .iconfont,\n          .interaction .dashboard .info-page .button .delete .iconfont {\n            padding-right: 10px; }\n        .interaction .dashboard .info-page .button .confirm:hover {\n          color: #eeeeee;\n          background: #ba2502; }\n        .interaction .dashboard .info-page .button .delete {\n          color: #eeeeee;\n          background: #ba2502; }\n    .interaction .dashboard .edit-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .edit-page .tip {\n        padding-left: 30px;\n        line-height: 50px;\n        font-size: 18px;\n        text-align: center;\n        color: #333333; }\n      .interaction .dashboard .edit-page .edit-area {\n        margin: 30px auto;\n        padding: 30px 0 40px;\n        display: flex;\n        flex-direction: column;\n        width: 400px;\n        border: 3px dashed #ddd;\n        border-radius: 10px; }\n        .interaction .dashboard .edit-page .edit-area label {\n          padding-right: 70px;\n          text-align: right;\n          line-height: 70px; }\n          .interaction .dashboard .edit-page .edit-area label input {\n            float: right;\n            margin: 15px auto;\n            padding: 0 10px;\n            width: 200px;\n            height: 40px;\n            font-size: 16px;\n            color: #333333;\n            border: 1px solid #bbb;\n            box-sizing: border-box;\n            border-radius: 5px; }\n            .interaction .dashboard .edit-page .edit-area label input[name=\"url\"] {\n              cursor: text;\n              color: #999999; }\n        .interaction .dashboard .edit-page .edit-area .confirm {\n          padding: 10px 0;\n          margin-top: 15px;\n          margin-left: 130px;\n          width: 200px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border: 1px solid #ba2502;\n          border-radius: 5px;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .edit-page .edit-area .confirm:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n    .interaction .dashboard .upload-page {\n      margin: 55px auto;\n      width: 600px;\n      height: 500px; }\n      .interaction .dashboard .upload-page #upload-area {\n        position: relative;\n        height: 400px;\n        border: 3px dashed #e3e3e3;\n        border-radius: 15px;\n        /* 文件上传动画 */\n        /* 上传文件按钮 */ }\n        .interaction .dashboard .upload-page #upload-area::before {\n          content: '\\8BF7\\9009\\62E9\\6587\\4EF6\\6216\\5C06\\6587\\4EF6\\62D6\\62FD\\81F3\\6B64\\8FDB\\884C\\4E0A\\4F20';\n          display: block;\n          position: absolute;\n          top: calc(50% - 10px);\n          left: calc(50% - 153px);\n          line-height: 20px;\n          font-size: 18px;\n          color: #d7d7d7; }\n        .interaction .dashboard .upload-page #upload-area.uploading::before {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite .8s; }\n        .interaction .dashboard .upload-page #upload-area.uploading::after {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite; }\n        .interaction .dashboard .upload-page #upload-area #upload-button {\n          position: absolute;\n          top: calc(100% + 20px);\n          padding: 10px;\n          width: 150px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border-radius: 5px;\n          border: 1px solid #ba2502;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .upload-page #upload-area #upload-button:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n    .interaction .dashboard .hide {\n      display: none; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\n * admin.css\n * Copyright (C) 2018 daijt\n *\n * Distributed under terms of the MIT license.\n */\n/* global variable */\n/* global style */\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: content-box; }\n\na {\n  color: inherit;\n  text-decoration: none; }\n\nli {\n  list-style: none; }\n\ninput:focus {\n  outline: none; }\n\nbody {\n  height: 100vh;\n  display: flex;\n  font-family: \"Tahoma\", sans-serif;\n  box-sizing: border-box; }\n\n@keyframes fadein {\n  from {\n    opacity: 1;\n    transform: scale(0); }\n  to {\n    opacity: 0;\n    transform: scale(1); } }\n\n@keyframes blink {\n  from {\n    background: #efefef; }\n  to {\n    background: #c8c8c8; } }\n\n.blink {\n  animation: blink .5s 5 ease-in-out; }\n\n/* 滚动条 */\n::-webkit-scrollbar {\n  width: 5px; }\n\n/* 滚动条滑块 */\n::-webkit-scrollbar-thumb {\n  border-radius: 10px;\n  background: rgba(0, 0, 0, 0.1); }\n\n/* 仿网易云音乐 Mac 客户端 */\n.neteasemusic {\n  margin: auto;\n  width: 1000px;\n  height: 670px;\n  border-radius: 5px;\n  box-shadow: 0 0 10px rgba(64, 64, 64, 0.7);\n  transition: all ease .3s;\n  overflow: hidden; }\n  .neteasemusic:hover {\n    box-shadow: 0 0 15px rgba(64, 64, 64, 0.5); }\n\n/* 顶部导航及用户登录区 */\n.top-bar {\n  position: relative;\n  height: 60px;\n  background: #ba2502;\n  /* 个人信息 */ }\n  .top-bar .button {\n    position: absolute;\n    top: 5px;\n    left: 27px;\n    width: 12px;\n    height: 12px;\n    line-height: 10px;\n    text-align: center;\n    color: rgba(0, 0, 0, 0.4);\n    font-size: 12px;\n    border-radius: 50%;\n    background: #f6be4f; }\n    .top-bar .button::before {\n      content: '';\n      display: block;\n      position: absolute;\n      top: 0;\n      left: -20px;\n      width: 12px;\n      height: 12px;\n      border-radius: 50%;\n      background: #ed6b60; }\n    .top-bar .button::after {\n      content: '';\n      display: block;\n      position: absolute;\n      top: 0;\n      right: -20px;\n      width: 12px;\n      height: 12px;\n      border-radius: 50%;\n      background: #62c655; }\n  .top-bar .logo {\n    position: absolute;\n    bottom: 0;\n    left: 10px;\n    width: 160px;\n    height: 40px;\n    background-size: contain; }\n  .top-bar .profile {\n    position: absolute;\n    right: 20px;\n    bottom: 12px;\n    color: #eeeeee; }\n    .top-bar .profile li {\n      float: left;\n      padding: 0 8px;\n      line-height: 14px;\n      font-size: 14px; }\n      .top-bar .profile li .iconfont {\n        padding-right: 5px; }\n      .top-bar .profile li a {\n        text-decoration: underline; }\n\n/* 用户交互区 */\n.interaction {\n  display: flex;\n  /* 侧边栏 */\n  /* 右侧面板 */ }\n  .interaction .aside-bar {\n    position: relative;\n    width: 200px;\n    height: 610px;\n    background: #f6f6f6;\n    overflow: hidden;\n    /* 音乐列表 */\n    /* 添加歌曲 */ }\n    .interaction .aside-bar .song-list {\n      height: 549px;\n      font-size: 12px;\n      overflow: auto;\n      border-right: 1px solid #c8c8c8;\n      /* 歌曲选中样式 */ }\n      .interaction .aside-bar .song-list li {\n        /* 歌曲信息 */\n        /* 歌名 */\n        /* 歌手 */ }\n        .interaction .aside-bar .song-list li.active {\n          background: #c8c8c8; }\n        .interaction .aside-bar .song-list li.active::before {\n          position: absolute;\n          top: calc(50% - 20px);\n          left: 0;\n          content: '';\n          display: block;\n          width: 5px;\n          height: 40px;\n          background: #ba2502; }\n        .interaction .aside-bar .song-list li p {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis; }\n        .interaction .aside-bar .song-list li p.song {\n          font-size: 13px; }\n        .interaction .aside-bar .song-list li p.singer {\n          color: #494949; }\n          .interaction .aside-bar .song-list li p.singer .iconfont {\n            padding-right: 3px;\n            font-weight: bolder;\n            font-size: 12px; }\n        .interaction .aside-bar .song-list li p.lyric {\n          display: none; }\n        .interaction .aside-bar .song-list li p.cover {\n          display: none; }\n    .interaction .aside-bar #add-song {\n      position: fixed;\n      padding: 19px 0;\n      width: 199px;\n      color: #333333;\n      text-align: center;\n      border-top: 1px solid #ddd;\n      border-radius: 0 0 0 5px;\n      cursor: pointer;\n      background: #ece9e6;\n      background: linear-gradient(to top, #e6e6e6, #ffffff);\n      transition: all ease .1s;\n      border-right: 1px solid #c8c8c8; }\n      .interaction .aside-bar #add-song:hover {\n        color: #ba2502; }\n      .interaction .aside-bar #add-song .iconfont {\n        padding-right: 5px; }\n  .interaction li {\n    position: relative;\n    padding: 5px 5px 5px 43px;\n    line-height: 20px;\n    cursor: pointer; }\n    .interaction li:nth-child(odd) {\n      background: #efefef; }\n    .interaction li:hover {\n      color: #ba2502; }\n    .interaction li::after {\n      position: absolute;\n      content: '';\n      top: calc(50% - 10px);\n      left: 10px;\n      width: 26px;\n      height: 26px;\n      display: block;\n      background-size: contain; }\n  .interaction .dashboard {\n    width: 800px;\n    background: #fafafa;\n    /* 欢迎页面 */\n    /* 查看音乐界面 */\n    /* 编辑歌曲页面 */\n    /* 新增歌曲页面 */ }\n    .interaction .dashboard .welcome-page {\n      margin: 70px auto;\n      width: 700px; }\n      .interaction .dashboard .welcome-page .swiper-container {\n        width: 100%;\n        height: 400px;\n        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }\n        .interaction .dashboard .welcome-page .swiper-container .swiper-slide {\n          background-position: center;\n          background-size: cover; }\n      .interaction .dashboard .welcome-page .welcome-info {\n        padding: 30px 0;\n        text-align: center;\n        font-size: 25px;\n        color: #ba2502; }\n        .interaction .dashboard .welcome-page .welcome-info .iconfont {\n          font-size: 25px;\n          padding-right: 10px; }\n    .interaction .dashboard .info-page {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      width: 100%;\n      height: 100%; }\n      .interaction .dashboard .info-page .show-area {\n        display: flex;\n        flex-direction: column;\n        padding: 10px 20px 20px;\n        width: 450px;\n        border-radius: 10px;\n        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2); }\n        .interaction .dashboard .info-page .show-area label {\n          padding: 17px 5px 3px;\n          text-align: left; }\n        .interaction .dashboard .info-page .show-area input {\n          padding: 0 10px;\n          height: 40px;\n          font-size: 16px;\n          color: #333333;\n          border: 1px solid #bbb;\n          box-sizing: border-box;\n          border-radius: 5px;\n          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); }\n          .interaction .dashboard .info-page .show-area input[name=\"url\"] {\n            cursor: text;\n            color: #999999; }\n        .interaction .dashboard .info-page .show-area .lyric {\n          padding: 10px;\n          font-size: 16px;\n          resize: none;\n          border: 1px solid #bbbbbb;\n          border-radius: 5px;\n          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); }\n          .interaction .dashboard .info-page .show-area .lyric:focus {\n            outline: none; }\n        .interaction .dashboard .info-page .show-area .button-wrapper {\n          display: flex;\n          justify-content: space-between;\n          padding: 30px 0 10px; }\n          .interaction .dashboard .info-page .show-area .button-wrapper .confirm,\n          .interaction .dashboard .info-page .show-area .button-wrapper .delete {\n            padding: 10px 0;\n            width: 200px;\n            line-height: 20px;\n            font-size: 18px;\n            text-align: center;\n            border: 1px solid #ba2502;\n            border-radius: 5px;\n            cursor: pointer; }\n            .interaction .dashboard .info-page .show-area .button-wrapper .confirm .iconfont,\n            .interaction .dashboard .info-page .show-area .button-wrapper .delete .iconfont {\n              padding-right: 10px; }\n          .interaction .dashboard .info-page .show-area .button-wrapper .delete {\n            color: #eeeeee;\n            background: #ba2502; }\n          .interaction .dashboard .info-page .show-area .button-wrapper .confirm {\n            color: #ba2502;\n            transition: all ease .3s; }\n            .interaction .dashboard .info-page .show-area .button-wrapper .confirm:hover {\n              color: #eeeeee;\n              background: #ba2502; }\n    .interaction .dashboard .edit-page {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      height: 100%; }\n      .interaction .dashboard .edit-page .edit-area {\n        display: flex;\n        flex-direction: column;\n        padding: 3px 20px 10px;\n        width: 500px;\n        border-radius: 10px;\n        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2); }\n        .interaction .dashboard .edit-page .edit-area label {\n          padding: 17px 5px 3px;\n          text-align: left; }\n        .interaction .dashboard .edit-page .edit-area input {\n          padding: 0 10px;\n          height: 40px;\n          font-size: 16px;\n          color: #333333;\n          border: 1px solid #bbb;\n          box-sizing: border-box;\n          border-radius: 5px;\n          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); }\n          .interaction .dashboard .edit-page .edit-area input[name=\"url\"] {\n            cursor: text;\n            color: #999999; }\n        .interaction .dashboard .edit-page .edit-area .lyric {\n          padding: 10px;\n          font-size: 16px;\n          resize: none;\n          border: 1px solid #bbbbbb;\n          border-radius: 5px;\n          box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); }\n          .interaction .dashboard .edit-page .edit-area .lyric:focus {\n            outline: none; }\n        .interaction .dashboard .edit-page .edit-area .button-wrapper {\n          display: flex;\n          justify-content: center;\n          padding: 20px 0 10px; }\n          .interaction .dashboard .edit-page .edit-area .button-wrapper .confirm {\n            padding: 10px 0;\n            width: 200px;\n            line-height: 20px;\n            font-size: 18px;\n            text-align: center;\n            color: #ba2502;\n            border: 1px solid #ba2502;\n            border-radius: 5px;\n            cursor: pointer;\n            transition: all ease .3s; }\n            .interaction .dashboard .edit-page .edit-area .button-wrapper .confirm:hover {\n              color: #eeeeee;\n              background: #ba2502; }\n    .interaction .dashboard .upload-page {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      height: 100%; }\n      .interaction .dashboard .upload-page #upload-area {\n        position: relative;\n        margin-top: -55px;\n        width: 600px;\n        height: 400px;\n        border: 3px dashed #e3e3e3;\n        border-radius: 15px;\n        /* 文件上传动画 */\n        /* 上传文件按钮 */ }\n        .interaction .dashboard .upload-page #upload-area::before {\n          content: '\\8BF7\\9009\\62E9\\6587\\4EF6\\6216\\5C06\\6587\\4EF6\\62D6\\62FD\\81F3\\6B64\\8FDB\\884C\\4E0A\\4F20';\n          display: block;\n          position: absolute;\n          top: calc(50% - 10px);\n          left: calc(50% - 153px);\n          line-height: 20px;\n          font-size: 18px;\n          color: #d7d7d7; }\n        .interaction .dashboard .upload-page #upload-area.uploading::before {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite .8s; }\n        .interaction .dashboard .upload-page #upload-area.uploading::after {\n          opacity: 0;\n          content: '';\n          position: absolute;\n          top: calc(50% - 25px);\n          left: calc(50% - 25px);\n          width: 50px;\n          height: 50px;\n          background: #c8c8c8;\n          border-radius: 50%;\n          animation: fadein 2s linear infinite; }\n        .interaction .dashboard .upload-page #upload-area #upload-button {\n          position: absolute;\n          top: calc(100% + 20px);\n          padding: 10px;\n          width: 150px;\n          line-height: 20px;\n          font-size: 18px;\n          text-align: center;\n          color: #ba2502;\n          border-radius: 5px;\n          border: 1px solid #ba2502;\n          cursor: pointer;\n          transition: all ease .3s; }\n          .interaction .dashboard .upload-page #upload-area #upload-button:hover {\n            color: #eeeeee;\n            background: #ba2502; }\n          .interaction .dashboard .upload-page #upload-area #upload-button::after {\n            content: '\\4E0A\\4F20\\6587\\4EF6\\540D\\79F0\\8BF7\\6309\\7167   \\201C\\6B4C\\66F2\\540D   - \\6B4C\\624B\\201D   \\5F62\\5F0F\\89C4\\8303';\n            display: block;\n            position: absolute;\n            bottom: 0;\n            left: 110%;\n            white-space: nowrap;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            color: #ba2502;\n            font-size: 12px; }\n    .interaction .dashboard .hide {\n      display: none; }\n", ""]);
 
 // exports
 
 
 /***/ })
-/******/ ]);
+
+/******/ });

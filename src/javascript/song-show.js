@@ -85,8 +85,7 @@
             let modified = {
                 song: false,
                 singer: false,
-                lyric: false,
-                cover: false
+                u
             };
             for (let key in modifiedData) {
                 if (this.data[key] !== modifiedData[key]) {
@@ -94,7 +93,7 @@
                     modified[key] = true;
                 }
             }
-            if (modified.song || modified.singer || modified.cover || modified.lyric) {
+            if (modified.song || modified.singer) {
                 let song = AV.Object.createWithoutData('SongList', this.data.id);
                 for (let key in modified) {
                     if (modified[key]) {
@@ -113,8 +112,8 @@
         bindEvents() {
             EventsHub.subscribe('modify', (data) => {
                 model.refreshData(data);
-                view.render(model.generateTemporaryTemplate(model.template, model.data));
                 view.show();
+                view.render(model.generateTemporaryTemplate(model.template, model.data));
             });
             EventsHub.subscribe('new', () => {
                 view.hide();

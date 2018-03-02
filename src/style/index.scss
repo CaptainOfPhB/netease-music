@@ -22,6 +22,7 @@ $designWidth: 414;
   margin: 0;
   padding: 0;
   box-sizing: content-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -38,9 +39,15 @@ input:active {
   outline: none;
 }
 
+.noscroll {
+  overflow: hidden;
+  body {
+    overflow: hidden;
+  }
+}
+
 body {
-  //height: 10000px;
-  display: flex;
+  position: relative;
   color: $globalTextColor;
   font-size: 16px;
   font-family: "Tahoma", sans-serif;
@@ -69,14 +76,22 @@ body {
   }
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* 仿网易云音乐 Mac 客户端 */
 .netease-music {
   position: relative;
   width: 100%;
+  overflow: hidden;
 
   /* 顶部 logo 区域以及 tab 导航 */
-  header {
+  .page-navigation {
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 2;
     /* logo 展示区 */
@@ -94,7 +109,7 @@ body {
         padding: 5px 10px;
         color: #FFFFFF;
         font-size: 15px;
-        border: 1px solid #FFFFFF;
+        box-shadow: 0 0 2px 0 rgba(255, 255, 255, 1);
         border-radius: 15px;
         &::before {
           content: 'click';
@@ -124,20 +139,21 @@ body {
       }
     }
     /* tab 导航 */
-    .nav-tab {
+    #nav-tab {
       display: flex;
       justify-content: space-around;
       background: $globalBgColor;
-      border-bottom: 1px solid rgba(0, 0, 0, .1);
+      box-shadow: 0 0 1px rgba(0, 0, 0, .3);
       .item {
-        padding: 12px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: px(138);
-        line-height: 15px;
         font-size: 15px;
         text-align: center;
         span {
           position: relative;
-          padding: 0 5px;
+          padding: 12px;
           &.active {
             color: $globalThemeColor;
           }
@@ -145,7 +161,7 @@ body {
             content: '';
             display: block;
             position: absolute;
-            bottom: -11px;
+            bottom: 0;
             left: calc(50% - 50%);
             width: 100%;
             height: 2px;
@@ -157,8 +173,8 @@ body {
   }
 
   /* 页面主体部分 */
-  main {
-    margin-top: 105px;
+  .page-container {
+    margin-top: 102px;
     /* 推荐音乐页面 */
     .item-common {
       display: flex;
@@ -196,10 +212,23 @@ body {
       }
     }
     .page-remd {
-      padding-top: 20px;
-      .subpage-remd,
+      .subpage-remd {
+        padding-bottom: 20px;
+        .swiper-container {
+          width: px(414);
+          height: px(207);
+          .swiper-slide {
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .swiper-pagination-bullet-active {
+            background: $globalThemeColor;
+          }
+        }
+      }
       .subpage-latest {
-        .title-remd,
         .title-latest {
           position: relative;
           padding-left: 8px;
@@ -216,34 +245,6 @@ body {
             background: $globalThemeColor;
           }
         }
-      }
-      .subpage-remd {
-        padding-bottom: 20px;
-        .item-remd {
-          display: flex;
-          flex-flow: wrap;
-          justify-content: space-between;
-          margin-top: 15px;
-          a {
-            margin-bottom: 18px;
-            width: 6.55rem;
-            img {
-              width: 6.55rem;
-              height: 6.55rem;
-            }
-            p {
-              padding: 5px 3px 0;
-              display: -webkit-box;
-              -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical;
-              font-size: 13px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-        }
-      }
-      .subpage-latest {
         ul {
           margin-top: 15px;
           padding-left: 10px;
@@ -272,7 +273,7 @@ body {
               font-size: 23px;
             }
           }
-          &.active {
+          &.jump {
             li {
               &:nth-child(1) {
                 animation: jump .3s 0s ease-in-out;
@@ -338,84 +339,42 @@ body {
           z-index: 1;
         }
       }
-      ul {
-        padding-left: 40px;
+      .song-list {
         .item-common {
-          position: relative;
-          &::before {
-            display: block;
-            position: absolute;
-            left: -28px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0;
+          border: none;
+          .order {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
             color: #999999;
             font-size: 17px;
             font-family: Helvetica, sans-serif;
           }
-          &:nth-child(1)::before,
-          &:nth-child(2)::before,
-          &:nth-child(3)::before {
+          &:nth-child(1) .order,
+          &:nth-child(2) .order,
+          &:nth-child(3) .order {
             color: $globalThemeColor;
           }
-          &:nth-child(1)::before {
-            content: '01';
-          }
-          &:nth-child(2)::before {
-            content: '02';
-          }
-          &:nth-child(3)::before {
-            content: '03';
-          }
-          &:nth-child(4)::before {
-            content: '04';
-          }
-          &:nth-child(5)::before {
-            content: '05';
-          }
-          &:nth-child(6)::before {
-            content: '06';
-          }
-          &:nth-child(7)::before {
-            content: '07';
-          }
-          &:nth-child(8)::before {
-            content: '08';
-          }
-          &:nth-child(9)::before {
-            content: '09';
-          }
-          &:nth-child(10)::before {
-            content: '10';
-          }
-          &:nth-child(11)::before {
-            content: '11';
-          }
-          &:nth-child(12)::before {
-            content: '12';
-          }
-          &:nth-child(13)::before {
-            content: '13';
-          }
-          &:nth-child(14)::before {
-            content: '14';
-          }
-          &:nth-child(15)::before {
-            content: '15';
-          }
-          &:nth-child(16)::before {
-            content: '16';
-          }
-          &:nth-child(17)::before {
-            content: '17';
-          }
-          &:nth-child(18)::before {
-            content: '18';
-          }
-          &:nth-child(19)::before {
-            content: '19';
-          }
-          &:nth-child(20)::before {
-            content: '20';
+          .song-wrapper {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
           }
         }
+      }
+      .tip {
+        padding: 20px 0;
+        color: #999999;
+        text-align: center;
+        font-size: 14px;
       }
     }
     .page-search {
@@ -453,6 +412,8 @@ body {
             padding: 0 30px;
             width: 100%;
             height: 30px;
+            color: $globalTextColor;
+            font-size: 14px;
             background: #ebecec;
             border: none;
             border-radius: 15px;
@@ -506,8 +467,212 @@ body {
       }
 
     }
-    .hide {
-      display: none;
+  }
+
+  /* 音乐播放界面 */
+  .page-play {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: all .5s ease;
+    z-index: 3;
+    &.show {
+      transform: translateX(0);
     }
+    &.showPseudoElm::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .6);
+      z-index: 1;
+    }
+    &.playing {
+      .needle {
+        transform: rotate(-3deg);
+      }
+      .controller {
+        .ctrl-bar {
+          .play-pause-btn {
+            svg:first-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    &.pause {
+      .needle {
+        transform: rotate(-25deg);
+      }
+      .controller {
+        .ctrl-bar {
+          .play-pause-btn {
+            svg:last-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    .needle {
+      position: absolute;
+      top: -5px;
+      left: px(190);
+      width: px(100);
+      height: px(150);
+      background-size: contain;
+      transform-origin: 11px 0;
+      transition: all .5s ease;
+      z-index: 2;
+    }
+    .svg-logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      z-index: 1;
+      svg {
+        height: px(17);
+        padding: 15px;
+      }
+    }
+    .song-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      .song-disc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: px(342);
+        height: px(342);
+        border-radius: 50%;
+        background-size: cover;
+        animation: rotate 13s linear infinite;
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+        }
+        .cover {
+          width: px(212);
+          height: px(212);
+          border-radius: 50%;
+        }
+      }
+    }
+    .song-info {
+      padding: 20px 0;
+      width: 100%;
+      color: #CCCCCC;
+      text-align: center;
+      z-index: 1;
+      .song {
+        padding: 15px;
+        color: #fefefe;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .song-scroll {
+        height: 73px;
+        overflow: hidden;
+        .lyric {
+          p {
+            padding: 5px;
+            line-height: 14px;
+            font-size: 14px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            &.active {
+              position: relative;
+              color: #fefefe;
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+    .controller {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+      .process-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        width: 100%;
+        span {
+          color: #fefefe;
+          font-size: 12px;
+        }
+        .process {
+          position: relative;
+          margin: 0 10px;
+          width: 250px;
+          height: 2px;
+          border-radius: 1px;
+          background: #CCCCCC;
+          .slide-block {
+            position: absolute;
+            top: calc(50% - 5px);
+            left: -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fefefe;
+            &::before {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 3px;
+              left: 3px;
+              width: 4px;
+              height: 4px;
+              background: $globalThemeColor;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+      .ctrl-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 0;
+        .play-pause-btn {
+          margin: 0 50px;
+        }
+      }
+    }
+  }
+
+  /* 全局隐藏样式 */
+  .hide {
+    display: none;
   }
 }

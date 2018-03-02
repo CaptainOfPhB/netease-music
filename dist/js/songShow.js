@@ -150,8 +150,7 @@
             var modified = {
                 song: false,
                 singer: false,
-                lyric: false,
-                cover: false
+                u: u
             };
             for (var key in modifiedData) {
                 if (this.data[key] !== modifiedData[key]) {
@@ -159,7 +158,7 @@
                     modified[key] = true;
                 }
             }
-            if (modified.song || modified.singer || modified.cover || modified.lyric) {
+            if (modified.song || modified.singer) {
                 var song = AV.Object.createWithoutData('SongList', this.data.id);
                 for (var _key in modified) {
                     if (modified[_key]) {
@@ -178,8 +177,8 @@
         bindEvents: function bindEvents() {
             EventsHub.subscribe('modify', function (data) {
                 model.refreshData(data);
-                view.render(model.generateTemporaryTemplate(model.template, model.data));
                 view.show();
+                view.render(model.generateTemporaryTemplate(model.template, model.data));
             });
             EventsHub.subscribe('new', function () {
                 view.hide();

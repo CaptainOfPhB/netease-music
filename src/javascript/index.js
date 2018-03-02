@@ -6,12 +6,14 @@
  */
 import '../style/normalize.css';
 import '../style/index.scss';
-// http://music.163.com/api/song/media?id=531051217 API
+// http://music.163.com/api/song/media?id=424496753 歌词 API
+// https://api.imjad.cn/cloudmusic/?type=search&search_type=1&s=xxxxx 歌曲 API
+// https://api.imjad.cn/cloudmusic/?type=playlist&id=309390784 歌单 API
 
 (function () {
     'use strict';
 
-    // 设置 REM
+    // set REM
     $('head').prepend(`
         <style>
             html {
@@ -19,5 +21,10 @@ import '../style/index.scss';
             }
         </style>
     `);
+
+    // initial LeanCloud
+    const appId = '3lYwUmOrkdkkv4zmxHzDbp3w-gzGzoHsz';
+    const appKey = '5KWyRdYSGUIjOYDMirAnfDJ4';
+    AV.init({ appId, appKey });
 
 })();

@@ -594,7 +594,9 @@ body {
         height: 73px;
         overflow: hidden;
         .lyric {
+          transition: all .3s ease;
           p {
+            position: relative;
             padding: 5px;
             line-height: 14px;
             font-size: 14px;
@@ -603,9 +605,8 @@ body {
             overflow: hidden;
             transition: all 0.3s ease;
             &.active {
-              position: relative;
               color: #fefefe;
-              transform: scale(1.2);
+              font-weight: bolder;
             }
           }
         }

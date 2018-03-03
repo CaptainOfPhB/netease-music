@@ -14,12 +14,15 @@
                 this.el.append(data);
             });
         },
+        find(selector) {
+            return this.el.find(selector);
+        }
     };
 
     let model = {
         data: '',
         template: `
-            <li id="{{id}}" class="item-common" data-url="{{url}}" data-lyric="{{lyric}}">
+            <li id="{{id}}" class="item-common">
                 <span class="order">{{index}}</span>
                 <div class="song-wrapper">
                     <div class="song-info">
@@ -33,6 +36,9 @@
                         </svg>
                             {{singer}} 
                         </p>
+                        <p class="url hide">{{url}}</p>
+                        <p class="lyric hide">{{lyric}}</p>
+                        <img src="{{cover}}" class="cover hide" width="1px" height="1px">
                     </div>
                     <div class="playsvg">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="#AAAAAA">
@@ -70,6 +76,9 @@
                     case 'lyric':
                         temporaryTemplate = temporaryTemplate.replace(/\{\{lyric\}\}/g, data[key]);
                         break;
+                    case 'cover':
+                        temporaryTemplate = temporaryTemplate.replace(/\{\{cover\}\}/g, data[key]);
+                        break;
                 }
             }
             return temporaryTemplate;
@@ -85,6 +94,7 @@
                             singer: song.attributes.singer,
                             lyric: song.attributes.lyric,
                             url: song.attributes.url,
+                            cover: song.attributes.cover
                         }
                     });
                     return this.showLeanCloudData();
@@ -115,7 +125,52 @@
             this.bindEvents();
         },
         bindEvents() {
-
+            EventsHub.subscribe('musicEnded', (id) => {
+                let nextMusic = view.el.find(`#${id}`).next();
+                model.refreshData({
+                    id: nextMusic.attr('id').trim(),
+                    song: nextMusic.find('.song').text().trim(),
+                    singer: nextMusic.find('.singer').text().trim(),
+                    lyric: nextMusic.find('.lyric').text().trim(),
+                    url: nextMusic.find('.url').text().trim(),
+                    cover: nextMusic.find('.cover').attr('src').trim(),
+                });
+                EventsHub.publish('playMusic', model.data);
+            });
+            EventsHub.subscribe('previousMusic', (id) => {
+                let prevMusic;
+                if (view.el.find(`#${id}`).prev()[0]) {
+                    prevMusic = view.find(`#${id}`).prev();
+                } else {
+                    prevMusic = view.find('.item-common').last();
+                }
+                model.refreshData({
+                    id: prevMusic.attr('id').trim(),
+                    song: prevMusic.find('.song').text().trim(),
+                    singer: prevMusic.find('.singer').text().trim(),
+                    lyric: prevMusic.find('.lyric').text().trim(),
+                    url: prevMusic.find('.url').text().trim(),
+                    cover: prevMusic.find('.cover').attr('src').trim(),
+                });
+                EventsHub.publish('playMusic', model.data);
+            });
+            EventsHub.subscribe('nextMusic', (id) => {
+                let nextMusic;
+                if (view.el.find(`#${id}`).next()[0]) {
+                    nextMusic = view.find(`#${id}`).next();
+                } else {
+                    nextMusic = view.find('.item-common').first();
+                }
+                model.refreshData({
+                    id: nextMusic.attr('id').trim(),
+                    song: nextMusic.find('.song').text().trim(),
+                    singer: nextMusic.find('.singer').text().trim(),
+                    lyric: nextMusic.find('.lyric').text().trim(),
+                    url: nextMusic.find('.url').text().trim(),
+                    cover: nextMusic.find('.cover').attr('src').trim(),
+                });
+                EventsHub.publish('playMusic', model.data);
+            })
         }
     };
 

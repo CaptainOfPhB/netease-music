@@ -9,8 +9,12 @@
 
     let view = {
         el: $('#page-play'),
-        render($el, data) {
-            $el.empty().append(data);
+        render($el, data, empty) {
+            if (empty) {
+                $el.empty().append(data);
+            } else {
+                $el.append(data);
+            }
         },
         find(selector) {
             return this.el.find(selector);
@@ -28,12 +32,18 @@
             this.find('.cover').css('background', `url("${data.cover}")`);
             this.find('.cover').css('background-repeat', 'no-repeat');
             this.find('.cover').css('background-size', 'cover');
-        }
+        },
+
     };
 
     let model = {
         data: '',
-        audio: {},
+        audio: {
+            duraiton: '',
+            time: '',
+            timeline: '',
+            lyric: ''
+        },
         template: `
             <section class="needle"></section>
             <section class="svg-logo">
@@ -81,11 +91,7 @@
             <section id="{{id}}" class="song-info">
                 <p class="song">{{song}}&nbsp;-&nbsp;{{singer}}</p>
                 <div class="song-scroll">
-                    <div class="lyric">
-                        <p>我是不是你最疼爱的人</p>
-                        <p class="active">我是不是你最疼爱的人</p>
-                        <p>我是不是你最疼爱的人</p>
-                    </div>
+                    <div class="lyric"> </div>
                     <audio class="audio" src="http://{{url}}" autoplay></audio>
                 </div>
             </section>
@@ -122,8 +128,44 @@
                 </span>
             </div>
         `,
+        templateLyrics: [],
         refreshData(data) {
             this.data = JSON.parse(JSON.stringify(data));
+        },
+        refreshAudio(audio, data) {
+            let {lyric, time, timeline} = this.splitLyricAndTime(data);
+            this.audio = {
+                duration: audio.duration,
+                lyric: lyric,
+                time: time,
+                timeline: timeline
+            }
+        },
+        splitLyricAndTime(lyric) {
+            let audio = {
+                lyric: [],
+                time: [],
+                timeline: []
+            };
+            lyric.split('\n').map((line) => {
+                line = line.trim().match(/\[([\d:.]+)\](.+)/);
+                audio.time.push((parseInt(line[1].split(':')[0]) * 60 + parseFloat(line[1].split(':')[1])).toFixed(2) * 1);
+                audio.lyric.push(line[2]);
+            });
+            audio.time.map((time, index, arrayTime) => {
+                if (arrayTime[index + 1]) {
+                    audio.timeline.push(((arrayTime[index] + arrayTime[index + 1]) / 2).toFixed(2) * 1)
+                }
+            });
+            return audio;
+        },
+        creatLyricLine(audio) {
+            this.templateLyrics = audio.lyric.map((eachLine, index) => {
+                let line = $('<p></p>');
+                line.attr('data-time', audio.time[index]);
+                line.text(eachLine);
+                return line[0];
+            });
         },
         fetchAudioData(dom) {
             let time = this.formatTime(dom.duration);
@@ -188,11 +230,16 @@
         bindEvents() {
             this.hidePlayPage();
             this.pauseAndPlay();
-            EventsHub.subscribe('playMusic', (data) => {
-                model.refreshData(data);
-                view.render(view.el, model.generateTemporaryTemplate(model.template, model.data));
 
+            EventsHub.subscribe('playMusic', (data) => {
+                // 更新歌曲数据
+                model.refreshData(data);
+                view.render(view.el, model.generateTemporaryTemplate(model.template, model.data), 'empty');
+
+
+                // 绑定音乐播放事件，一旦开始播放即展示播放页面
                 this.bindAudioEvent();
+
             })
         },
         showPlayPage() {
@@ -205,17 +252,46 @@
             })
         },
         bindAudioEvent() {
-            view.find('.audio').on('play', () => {
+            view.find('.audio').on('canplay', () => {
+                // 更新 audio 数据
+                model.refreshAudio(view.find('.audio')[0], model.data.lyric);
+                model.creatLyricLine(model.audio);
+                model.templateLyrics.map((lyric) => {
+                    view.render(view.find('.lyric'), lyric);
+                });
                 model.fetchAudioData(view.find('audio')[0]);
-                view.render(view.find('.controller'), model.generateTemporaryTemplate(model.templateAudio, model.audio));
+                view.render(view.find('.controller'), model.generateTemporaryTemplate(model.templateAudio, model.audio),);
                 // this.showPlayedTime();
-
-
-
-
-
+                // 需要实时展示播放时间、播放进度
+                // 点击播放条可改变当前播放时间、歌词进度等
+                // 点击上一首、下一首歌曲进行播放
+                this.previousMusic();
+                this.nextMusic();
                 view.changePlayPageBackground(model.data);
-                this.showPlayPage()
+                this.showPlayPage();
+            });
+            view.find('.audio').on('timeupdate', () => {
+                let time = view.find('.audio')[0].currentTime;
+                let lyrics = view.find('.lyric p');
+                lyrics.map((index, eachLine) => {
+                    if (index !== lyrics.length - 1) {
+                        let currentTime = lyrics.eq(index).attr('data-time');
+                        let nextTime = lyrics.eq(index + 1).attr('data-time');
+                        if (currentTime <= time && time < nextTime) {
+                            if (lyrics.eq(index - 1)) {
+                                lyrics.eq(index - 1).removeClass('active');
+                            }
+                            let pHeight = eachLine.getBoundingClientRect().top;
+                            let lyricHeight = view.find('.lyric')[0].getBoundingClientRect().top;
+                            let height = pHeight - lyricHeight;
+                            $(eachLine).addClass('active');
+                            view.find('.lyric').css('transform', `translateY(-${height - 24}px)`);
+                        }
+                    }
+                });
+            });
+            view.find('.audio').on('ended', () => {
+                EventsHub.publish('musicEnded', model.data.id)
             })
         },
         pauseAndPlay() {
@@ -225,11 +301,21 @@
                 this.data.isPlaying = !this.data.isPlaying;
             });
         },
+        previousMusic() {
+            view.find('.prev-btn').on('click', () => {
+                EventsHub.publish('previousMusic', model.data.id);
+            })
+        },
+        nextMusic() {
+            view.find('.next-btn').on('click', () => {
+                EventsHub.publish('nextMusic', model.data.id);
+            })
+        },
         showPlayedTime() {
             let timer = 0;
             timer = setTimeout(function clock() {
                 let currentTime = view.find('.start').text();
-            })
+            });
             console.log(currentTime);
         },
         preventScroll() {

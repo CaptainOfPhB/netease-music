@@ -102,9 +102,11 @@
             this.el.css('background', 'url("' + data.cover + '")');
             this.el.css('background-repeat', 'no-repeat');
             this.el.css('background-size', 'cover');
+            this.el.css('background-position', 'center center');
             this.find('.cover').css('background', 'url("' + data.cover + '")');
             this.find('.cover').css('background-repeat', 'no-repeat');
             this.find('.cover').css('background-size', 'cover');
+            this.find('.cover').css('background-position', 'center center');
         }
     };
 

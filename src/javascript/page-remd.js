@@ -113,10 +113,6 @@
                     console.log(error);
                 }
             );
-            this.bindEvents();
-        },
-        bindEvents() {
-
         }
     };
 

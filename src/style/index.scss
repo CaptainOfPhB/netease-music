@@ -400,6 +400,7 @@ body {
         align-items: center;
         padding: 15px;
         .search-icon {
+          box-sizing: border-box;
           margin: 4px -26px 0 0;
           z-index: 1;
         }
@@ -419,7 +420,8 @@ body {
             border-radius: 15px;
           }
         }
-        .close-button {
+        .clear-button {
+          box-sizing: border-box;
           margin: 1px 0 0 -23px;
         }
       }
@@ -437,35 +439,17 @@ body {
           border-radius: 16px;
         }
       }
-      .top-search-history {
-        margin-top: 10px;
-        li {
-          display: flex;
-          justify-content: flex-start;
-          .history-icon {
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-          }
-          .history-item {
-            display: flex;
-            flex-grow: 1;
-            justify-content: space-between;
-            padding: 13px 15px 13px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, .1);
-            .history-text {
-              font-size: 14px;
-              line-height: 19px;
-            }
-          }
-        }
-      }
       .top-search-result {
         ul {
           padding-left: 10px;
+          .not-found {
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
+            line-height: 16px;
+          }
         }
       }
-
     }
   }
 
@@ -675,5 +659,8 @@ body {
   /* 全局隐藏样式 */
   .hide {
     display: none;
+  }
+  .hide-btn{
+    visibility: hidden;
   }
 }

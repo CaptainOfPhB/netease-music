@@ -160,9 +160,7 @@
             }, function (error) {
                 console.log(error);
             });
-            this.bindEvents();
-        },
-        bindEvents: function bindEvents() {}
+        }
     };
 
     controller.init();

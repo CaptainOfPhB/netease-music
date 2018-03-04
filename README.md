@@ -119,3 +119,9 @@
     -webkit-tap-highlight-color: transparent;
   }
   ```
+  
+- **禁止元素在隐藏时因为 CSS 导致宽高变动**
+  
+  **问题描述**：元素在隐藏与显示时因为 CSS 属性缘故导致父元素宽高发生变化。
+  
+  **解决方法**：使用 CSS 属性 `visibility: hidden;` 代替 `display: hidden;` 即可。

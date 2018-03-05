@@ -27,6 +27,7 @@
             lyric: '',
             url: ''
         },
+        status: true,
         template: ` 
             <div id="upload-area">
                 <div id="upload-button">选择文件</div>
@@ -78,6 +79,13 @@
                 chunk_size: '10MB',
                 auto_start: true,
                 init: {
+                    BeforeUpload() {
+                        if (model.status) {
+                            model.status = !model.status;
+                        } else {
+                            return false;
+                        }
+                    },
                     UploadProgress() {
                         view.uploading();
                     },
@@ -85,6 +93,7 @@
                         model.refreshData(up, info);
                         view.uploaded();
                         EventsHub.publish('uploaded', model.data);
+                        model.status = !model.status;
                     }
                 }
             });

@@ -99,13 +99,13 @@
             <section class="controller"> </section>
         `,
         templateAudio: `
-            <div class="process-bar">
-                <span class="start">00:00</span>
-                <div class="process">
-                    <div class="slide-block"></div>
-                </div>
-                <span class="end">{{minute}}:{{second}}</span>
-            </div>
+            <!--<div class="process-bar">-->
+                <!--<span class="start">00:00</span>-->
+                <!--<div class="process">-->
+                    <!--<div class="slide-block"></div>-->
+                <!--</div>-->
+                <!--<span class="end">{{minute}}:{{second}}</span>-->
+            <!--</div>-->
             <div class="ctrl-bar">
                 <span class="prev-btn">
                     <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#DDDDDD" width="25px">
@@ -263,9 +263,9 @@
                 model.fetchAudioData(view.find('audio')[0]);
                 view.render(view.find('.controller'), model.generateTemporaryTemplate(model.templateAudio, model.audio),);
                 // this.showPlayedTime();
-                // 需要实时展示播放时间、播放进度
-                // 点击播放条可改变当前播放时间、歌词进度等
-                // 点击上一首、下一首歌曲进行播放
+                // 待添加功能：
+                // 1、需要实时展示播放时间、播放进度
+                // 2、点击播放条可改变当前播放时间、歌词进度等
                 this.previousMusic();
                 this.nextMusic();
                 view.changePlayPageBackground(model.data);

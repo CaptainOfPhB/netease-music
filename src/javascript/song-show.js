@@ -18,8 +18,8 @@
         hide() {
             this.el.addClass('hide');
         },
-        confirm() {
-            return confirm('确定删除吗？此操作不可恢复！');
+        confirm(resolve) {
+            alertify.confirm('确定删除吗？此操作不可恢复！', resolve);
         },
         decomposeDom() {
             return {
@@ -123,10 +123,12 @@
         },
         deleteSong() {
             view.el.on('click', '.delete', () => {
-                if (model.deleteData(view.confirm())) {
-                    view.hide();
-                    EventsHub.publish('delete', '用户歌曲已删除！');
-                }
+                view.confirm(
+                    () => {
+                        view.hide();
+                        EventsHub.publish('delete', '用户歌曲已删除！');
+                    }
+                );
             })
         },
         modifySong() {

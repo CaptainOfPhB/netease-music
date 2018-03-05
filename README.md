@@ -15,6 +15,7 @@
 - [jQuery](http://api.jquery.com/)：原生 JS 的封装库，更加便捷的操作 DOM 以及调用 JS API
 - [Swiper](http://idangero.us/swiper/)：最流行的**轮播插件**，适配 PC 端和移动端
 - [MVC](https://zh.wikipedia.org/wiki/MVC)：即 **Model**、**View**、**Controller**，一种软件设计模式，面向对象编程
+- [观察者模式](https://zh.wikipedia.org/wiki/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F)：观察者模式是软件设计模式的一种。在此种模式中，一个目标对象管理所有相依于它的观察者对象，并且在它本身的状态改变时主动发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实时事件处理系统。
 - [Webpack](https://webpack.js.org/)：**前端工程化** 打包工具，大大节省了开发效率
 - [LeanCloud](https://leancloud.cn/)：提供一站式后端云服务，作为歌曲信息存储的后台云服务器
 - [七牛云](https://www.qiniu.com)：国内领先的企业级云服务商，作为歌曲文件存储的后台云服务器
@@ -124,4 +125,4 @@
   
   **问题描述**：元素在隐藏与显示时因为 CSS 属性缘故导致父元素宽高发生变化。
   
-  **解决方法**：使用 CSS 属性 `visibility: hidden;` 代替 `display: hidden;` 即可。
+  **解决方法**：使用 CSS 属性 `visibility: hidden;` 代替 `display: none;` 即可。

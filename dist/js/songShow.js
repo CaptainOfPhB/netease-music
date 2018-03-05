@@ -91,19 +91,9 @@
         hide: function hide() {
             this.el.addClass('hide');
         },
-        confirm: function (_confirm) {
-            function confirm() {
-                return _confirm.apply(this, arguments);
-            }
-
-            confirm.toString = function () {
-                return _confirm.toString();
-            };
-
-            return confirm;
-        }(function () {
-            return confirm('确定删除吗？此操作不可恢复！');
-        }),
+        confirm: function confirm(resolve) {
+            alertify.confirm('确定删除吗？此操作不可恢复！', resolve);
+        },
         decomposeDom: function decomposeDom() {
             return {
                 $songDom: this.el.find('input[name="song"]'),
@@ -188,10 +178,10 @@
         },
         deleteSong: function deleteSong() {
             view.el.on('click', '.delete', function () {
-                if (model.deleteData(view.confirm())) {
+                view.confirm(function () {
                     view.hide();
                     EventsHub.publish('delete', '用户歌曲已删除！');
-                }
+                });
             });
         },
         modifySong: function modifySong() {

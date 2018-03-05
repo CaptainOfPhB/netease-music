@@ -23,9 +23,10 @@
         },
         decomposeDom() {
             return {
-                $songDom: this.el.find('input[name="song"]'),
-                $singerDom: this.el.find('input[name="singer"]'),
-                $coverDom: this.el.find('input[name="cover"]')
+                $songDom: this.el.find('.song'),
+                $singerDom: this.el.find('.singer'),
+                $lyricDom: this.el.find('.lyric'),
+                $coverDom: this.el.find('.cover')
             }
         }
     };
@@ -78,6 +79,7 @@
             return {
                 song: view.$songDom.val(),
                 singer: view.$singerDom.val(),
+                lyric: view.$lyricDom.val(),
                 cover: view.$coverDom.val()
             };
         },
@@ -85,7 +87,8 @@
             let modified = {
                 song: false,
                 singer: false,
-                u
+                lyric: false,
+                cover: false
             };
             for (let key in modifiedData) {
                 if (this.data[key] !== modifiedData[key]) {
@@ -93,7 +96,7 @@
                     modified[key] = true;
                 }
             }
-            if (modified.song || modified.singer) {
+            if (modified.song || modified.singer || modified.lyric || modified.cover) {
                 let song = AV.Object.createWithoutData('SongList', this.data.id);
                 for (let key in modified) {
                     if (modified[key]) {

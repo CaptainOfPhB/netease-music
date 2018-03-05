@@ -100,6 +100,7 @@
             lyric: '',
             url: ''
         },
+        status: true,
         template: ' \n            <div id="upload-area">\n                <div id="upload-button">\u9009\u62E9\u6587\u4EF6</div>\n            </div> \n        ',
         refreshData: function refreshData(up, info) {
             var resdata = this.splitSongInfo(JSON.parse(info.response), up.getOption('domain'));
@@ -149,6 +150,13 @@
                 chunk_size: '10MB',
                 auto_start: true,
                 init: {
+                    BeforeUpload: function BeforeUpload() {
+                        if (model.status) {
+                            model.status = !model.status;
+                        } else {
+                            return false;
+                        }
+                    },
                     UploadProgress: function UploadProgress() {
                         view.uploading();
                     },
@@ -156,6 +164,7 @@
                         model.refreshData(up, info);
                         view.uploaded();
                         EventsHub.publish('uploaded', model.data);
+                        model.status = !model.status;
                     }
                 }
             });

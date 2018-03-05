@@ -1,9 +1,2 @@
-/node-modules
-/webpack.config.js
-/postcss.config.js
-/package.json
-/init
-/node_modules/
-/scaffold-initital
-/package-lock.json
+/node_modules
 /qiniu-config.json

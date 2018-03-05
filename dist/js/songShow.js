@@ -96,9 +96,10 @@
         },
         decomposeDom: function decomposeDom() {
             return {
-                $songDom: this.el.find('input[name="song"]'),
-                $singerDom: this.el.find('input[name="singer"]'),
-                $coverDom: this.el.find('input[name="cover"]')
+                $songDom: this.el.find('.song'),
+                $singerDom: this.el.find('.singer'),
+                $lyricDom: this.el.find('.lyric'),
+                $coverDom: this.el.find('.cover')
             };
         }
     };
@@ -133,6 +134,7 @@
             return {
                 song: view.$songDom.val(),
                 singer: view.$singerDom.val(),
+                lyric: view.$lyricDom.val(),
                 cover: view.$coverDom.val()
             };
         },
@@ -140,7 +142,8 @@
             var modified = {
                 song: false,
                 singer: false,
-                u: u
+                lyric: false,
+                cover: false
             };
             for (var key in modifiedData) {
                 if (this.data[key] !== modifiedData[key]) {
@@ -148,7 +151,7 @@
                     modified[key] = true;
                 }
             }
-            if (modified.song || modified.singer) {
+            if (modified.song || modified.singer || modified.lyric || modified.cover) {
                 var song = AV.Object.createWithoutData('SongList', this.data.id);
                 for (var _key in modified) {
                     if (modified[_key]) {

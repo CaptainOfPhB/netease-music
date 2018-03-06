@@ -1,6 +1,4 @@
 #! /bin/zsh
-
-# 构建 webpack 脚手架
 sudo npm init -y
 sudo npm install --save-dev --unsafe-perm=true webpack
 sudo npm install --save-dev --unsafe-perm=true style-loader css-loader
@@ -8,16 +6,7 @@ sudo npm install --save-dev --unsafe-perm=true -D postcss-loader
 sudo npm install --save-dev --unsafe-perm=true sass-loader node-sass
 sudo npm install --save-dev --unsafe-perm=true file-loader
 sudo npm install --save-dev --unsafe-perm=true babel-loader babel-core babel-preset-env
-sudo npm install --save-dev --unsafe-perm=true csv-loader
-sudo npm install --save-dev --unsafe-perm=true xml-loader
 sudo npm install --save-dev --unsafe-perm=true postcss-import
 # 多页面应用，html 多出口，自动引入页面所需的 js 文件
 sudo npm install --save-dev --unsafe-perm=true html-webpack-plugin
-# 将 js 中引入的 CSS 打包为单个的文件
-sudo npm install --save-dev --unsafe-perm=true extract-text-webpack-plugin
-
-# 引入第三方库
-sudo npm install --save-dev --unsafe-perm=true jquery
-sudo npm install --save-dev --unsafe-perm=true axios
-sudo npm install --save-dev --unsafe-perm=true lodash
-sudo npm install --save-dev --unsafe-perm=true vue
+# sudo npm install --save-dev --unsafe-perm=true jquery

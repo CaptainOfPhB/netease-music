@@ -231,7 +231,6 @@
         bindEvents() {
             this.hidePlayPage();
             this.pauseAndPlay();
-
             EventsHub.subscribe('playMusic', (data) => {
                 // 更新歌曲数据
                 model.refreshData(data);
@@ -292,8 +291,8 @@
                 });
             });
             view.find('.audio').on('ended', () => {
-                EventsHub.publish('musicEnded', model.data.id)
-            })
+                EventsHub.publish('nextMusic', model.data.id)
+            });
         },
         pauseAndPlay() {
             view.el.on('click', '.play-pause-btn', () => {
@@ -305,12 +304,12 @@
         previousMusic() {
             view.find('.prev-btn').on('click', () => {
                 EventsHub.publish('previousMusic', model.data.id);
-            })
+            });
         },
         nextMusic() {
             view.find('.next-btn').on('click', () => {
                 EventsHub.publish('nextMusic', model.data.id);
-            })
+            });
         },
         showPlayedTime() {
             let timer = 0;

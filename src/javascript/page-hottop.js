@@ -125,18 +125,6 @@
             this.bindEvents();
         },
         bindEvents() {
-            EventsHub.subscribe('musicEnded', (id) => {
-                let nextMusic = view.el.find(`#${id}`).next();
-                model.refreshData({
-                    id: nextMusic.attr('id').trim(),
-                    song: nextMusic.find('.song').text().trim(),
-                    singer: nextMusic.find('.singer').text().trim(),
-                    lyric: nextMusic.find('.lyric').text().trim(),
-                    url: nextMusic.find('.url').text().trim(),
-                    cover: nextMusic.find('.cover').attr('src').trim(),
-                });
-                EventsHub.publish('playMusic', model.data);
-            });
             EventsHub.subscribe('previousMusic', (id) => {
                 let prevMusic;
                 if (view.el.find(`#${id}`).prev()[0]) {

@@ -170,18 +170,6 @@
             this.bindEvents();
         },
         bindEvents: function bindEvents() {
-            EventsHub.subscribe('musicEnded', function (id) {
-                var nextMusic = view.el.find('#' + id).next();
-                model.refreshData({
-                    id: nextMusic.attr('id').trim(),
-                    song: nextMusic.find('.song').text().trim(),
-                    singer: nextMusic.find('.singer').text().trim(),
-                    lyric: nextMusic.find('.lyric').text().trim(),
-                    url: nextMusic.find('.url').text().trim(),
-                    cover: nextMusic.find('.cover').attr('src').trim()
-                });
-                EventsHub.publish('playMusic', model.data);
-            });
             EventsHub.subscribe('previousMusic', function (id) {
                 var prevMusic = void 0;
                 if (view.el.find('#' + id).prev()[0]) {

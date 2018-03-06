@@ -228,7 +228,6 @@
 
             this.hidePlayPage();
             this.pauseAndPlay();
-
             EventsHub.subscribe('playMusic', function (data) {
                 // 更新歌曲数据
                 model.refreshData(data);
@@ -289,7 +288,7 @@
                 });
             });
             view.find('.audio').on('ended', function () {
-                EventsHub.publish('musicEnded', model.data.id);
+                EventsHub.publish('nextMusic', model.data.id);
             });
         },
         pauseAndPlay: function pauseAndPlay() {

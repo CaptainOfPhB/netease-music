@@ -80,8 +80,6 @@
 (function () {
     'use strict';
 
-    // console.log('引入 events-hub.js 成功！');
-
     window.EventsHub = {
         events: {},
         subscribe: function subscribe(eventName, callback) {
@@ -89,7 +87,7 @@
                 this.events[eventName] = [];
             }
             this.events[eventName].push(callback);
-            console.log('\u6210\u529F\u8BA2\u9605 ' + eventName + ' \u4E8B\u4EF6\uFF01');
+            // console.log(`成功订阅 ${eventName} 事件！`);
         },
         publish: function publish(eventName, data) {
             if (this.events[eventName] && this.events[eventName].length) {

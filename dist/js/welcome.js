@@ -80,8 +80,6 @@
 (function () {
     'use strict';
 
-    // console.log('引入 welcome.js 成功！');
-
     var view = {
         el: $('.welcome-page'),
         render: function render(data) {
@@ -96,7 +94,7 @@
     };
 
     var model = {
-        template: '\n            <div class="swiper-container">\n                <div class="swiper-wrapper">\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                </div>\n            </div>\n            <p class="welcome-info"><i class="iconfont icon-CN_NetEasemusic"></i>\u6B22\u8FCE\u4F7F\u7528\u7F51\u6613\u4E91\u97F3\u4E50\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\uFF01</p>\n        '
+        template: '\n            <div class="swiper-container">\n                <div class="swiper-wrapper">\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                    <div class="swiper-slide"></div>\n                </div>\n            </div>\n            <p class="welcome-info"><i class="iconfont icon-CN_NetEasemusic"></i>\u6B22\u8FCE\u4F7F\u7528\u7F51\u6613\u4E91\u97F3\u4E50\u540E\u53F0\u7BA1\u7406\u7CFB\u7EDF\uFF01</p>\n        '
     };
 
     var controller = {

@@ -7,8 +7,6 @@
 (function () {
     'use strict';
 
-    // console.log('引入 welcome.js 成功！');
-
     let view = {
         el: $('.welcome-page'),
         render(data) {
@@ -26,11 +24,6 @@
         template: `
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"></div>
-                    <div class="swiper-slide"></div>
-                    <div class="swiper-slide"></div>
-                    <div class="swiper-slide"></div>
-                    <div class="swiper-slide"></div>
                     <div class="swiper-slide"></div>
                     <div class="swiper-slide"></div>
                     <div class="swiper-slide"></div>

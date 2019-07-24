@@ -4,8 +4,8 @@
 
 ### Preview
 
-- [移动端播放页面](http://captaininphw.xyz/netease-music/dist/html/index.html)
-- [PC 端管理页面](http://captaininphw.xyz/netease-music/dist/html/admin.html)
+- [移动端播放页面](https://daijiangtao.name/netease-music/dist/html/index.html)
+- [PC 端管理页面](https://daijiangtao.name/netease-music/dist/html/admin.html)
 
 ### Technique stack
 

@@ -1,3 +1,7 @@
+⚠️ **This project is for practice, and is no longer maintained. Maybe some codes are no longer running properly.** ⚠️
+
+---
+
 # NeteaseMusic
 
 一个精美的网易云音乐播放器。

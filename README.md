@@ -1,4 +1,4 @@
-⚠️ **This project is for practice, and is no longer maintained. Maybe some codes are no longer running properly.** ⚠️
+⚠️ **This project is for practice, and is no longer maintained. Some codes are no longer running properly.** ⚠️
 
 ---
 
